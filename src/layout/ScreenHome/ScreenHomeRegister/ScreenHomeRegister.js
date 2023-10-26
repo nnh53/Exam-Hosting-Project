@@ -1,5 +1,6 @@
 import React from 'react'
 import { Form, Input, Button } from 'antd'
+import './ScreenHomeRegister.scss'
 const MyFormItemContext = React.createContext([])
 function toArr(str) {
   return Array.isArray(str) ? str : [str]
@@ -19,26 +20,28 @@ const App = () => {
     console.log(value)
   }
   return (
-    <Form name='form_item_path' layout='vertical' onFinish={onFinish}>
-      <MyFormItemGroup prefix={['user']}>
-        <MyFormItemGroup prefix={['name']}>
-          <MyFormItem name='firstName' label='First Name'>
-            <Input />
-          </MyFormItem>
-          <MyFormItem name='lastName' label='Last Name'>
+    <div className='ScreenHomeRegister'>
+      <Form name='form_item_path' layout='vertical' onFinish={onFinish}>
+        <MyFormItemGroup prefix={['user']}>
+          <MyFormItemGroup prefix={['name']}>
+            <MyFormItem name='firstName' label='First Name' className='ScreenHomeRegister__titleInput'>
+              <Input />
+            </MyFormItem>
+            <MyFormItem name='lastName' label='Last Name' className='ScreenHomeRegister__titleInput'>
+              <Input />
+            </MyFormItem>
+          </MyFormItemGroup>
+
+          <MyFormItem name='age' label='Age'>
             <Input />
           </MyFormItem>
         </MyFormItemGroup>
 
-        <MyFormItem name='age' label='Age'>
-          <Input />
-        </MyFormItem>
-      </MyFormItemGroup>
-
-      <Button type='primary' htmlType='submit'>
-        Submit
-      </Button>
-    </Form>
+        <Button type='primary' htmlType='submit'>
+          Submit
+        </Button>
+      </Form>
+    </div>
   )
 }
 export default App

@@ -4,7 +4,7 @@ import ScreenHomeRegister from '../ScreenHomeRegister/ScreenHomeRegister'
 
 export default function ScreenHomeBigForm() {
   return (
-    <div className='bigFormContainer'>
+    <div className='ScreenHomeBigForm'>
       <ScreenHomeRegister />
     </div>
   )
