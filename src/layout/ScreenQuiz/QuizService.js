@@ -1,11 +1,7 @@
 // gọi API
 
-const GetQuiz = async () => {
-  let res = await fetch('ahihi')
-  let data = await res.json()
-
-  // lọc data theo yêu cầu đồng nghiệp
-  data.splice(0, 5)
-
+export const GetData = async (quizId) => {
+  const response = await fetch(`http://localhost:1880/quizz/${quizId}`)
+  const data = await response.json()
   return data
 }

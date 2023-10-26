@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&display=swap');
+
+.Question {
+  font-family: 'Noto Sans', sans-serif;
+  > h3 {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+  }
+
+  span {
+    font-size: 1.5rem;
+  }
+}
