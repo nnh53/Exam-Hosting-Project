@@ -1,7 +1,5 @@
 import React from 'react'
 
 export default function Exam() {
-  return (
-    <div>Exam</div>
-  )
+  return <div>Exam</div>
 }

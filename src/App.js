@@ -1,11 +1,10 @@
-import logo from './logo.svg'
 import './App.css'
-import { Input } from 'antd'
+import ScreenHome from './layout/ScreenHome/ScreenHome'
 
 function App() {
   return (
     <div>
-      <Input />
+      <ScreenHome />
     </div>
   )
 }
