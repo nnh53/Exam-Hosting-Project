@@ -24,10 +24,10 @@ const App = () => {
       <Form name='form_item_path' layout='vertical' onFinish={onFinish}>
         <MyFormItemGroup prefix={['user']}>
           <MyFormItemGroup prefix={['name']}>
-            <MyFormItem name='firstName' label='First Name'>
+            <MyFormItem name='firstName' label='First Name' className='ScreenHomeRegister__titleInput'>
               <Input />
             </MyFormItem>
-            <MyFormItem name='lastName' label='Last Name'>
+            <MyFormItem name='lastName' label='Last Name' className='ScreenHomeRegister__titleInput'>
               <Input />
             </MyFormItem>
           </MyFormItemGroup>

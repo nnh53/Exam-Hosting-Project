@@ -5,7 +5,7 @@ import ScreenQuiz from './layout/ScreenQuiz/ScreenQuiz'
 
 function App() {
   return (
-    <div>
+    <div className=''>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<ScreenHome />} />
