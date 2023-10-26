@@ -1,45 +1,56 @@
 import React from 'react'
-import { Form, Input, Button } from 'antd'
+
 import './ScreenHomeRegister.scss'
-const MyFormItemContext = React.createContext([])
-function toArr(str) {
-  return Array.isArray(str) ? str : [str]
-}
-const MyFormItemGroup = ({ prefix, children }) => {
-  const prefixPath = React.useContext(MyFormItemContext)
-  const concatPath = React.useMemo(() => [...prefixPath, ...toArr(prefix)], [prefixPath, prefix])
-  return <MyFormItemContext.Provider value={concatPath}>{children}</MyFormItemContext.Provider>
-}
-const MyFormItem = ({ name, ...props }) => {
-  const prefixPath = React.useContext(MyFormItemContext)
-  const concatName = name !== undefined ? [...prefixPath, ...toArr(name)] : undefined
-  return <Form.Item name={concatName} {...props} />
-}
+import { Form, Input, message } from 'antd'
+import SubmitButton from '../../Button/SubmitButton'
+
 const App = () => {
-  const onFinish = (value) => {
-    console.log(value)
+  const [form] = Form.useForm()
+  const onFinish = () => {
+    message.success('Submit success!')
   }
+  const onFinishFailed = () => {
+    message.error('Submit failed!')
+  }
+
   return (
     <div className='ScreenHomeRegister'>
-      <Form name='form_item_path' layout='vertical' onFinish={onFinish}>
-        <MyFormItemGroup prefix={['user']}>
-          <MyFormItemGroup prefix={['name']}>
-            <MyFormItem name='firstName' label='First Name' className='ScreenHomeRegister__titleInput'>
-              <Input />
-            </MyFormItem>
-            <MyFormItem name='lastName' label='Last Name' className='ScreenHomeRegister__titleInput'>
-              <Input />
-            </MyFormItem>
-          </MyFormItemGroup>
+      <Form form={form} layout='vertical' onFinish={onFinish} onFinishFailed={onFinishFailed} autoComplete='off'>
+        <Form.Item
+          name='Full Name'
+          label='Full Name'
+          rules={[
+            {
+              required: true
+            },
+            {
+              type: 'string',
+              min: 6
+            }
+          ]}
+        >
+          <Input placeholder='Input your Full Name' />
+        </Form.Item>
 
-          <MyFormItem name='age' label='Age'>
-            <Input />
-          </MyFormItem>
-        </MyFormItemGroup>
+        <Form.Item
+          name='Email'
+          label='Email'
+          rules={[
+            {
+              required: true
+            },
+            {
+              type: 'email',
+              min: 6
+            }
+          ]}
+        >
+          <Input placeholder='Input your Email' />
+        </Form.Item>
 
-        <Button type='primary' htmlType='submit'>
-          Submit
-        </Button>
+        <Form.Item>
+          <SubmitButton />
+        </Form.Item>
       </Form>
     </div>
   )
