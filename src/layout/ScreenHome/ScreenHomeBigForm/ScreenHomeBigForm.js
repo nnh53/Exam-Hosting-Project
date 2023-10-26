@@ -1,6 +1,11 @@
 import React from 'react'
 import './ScreenHomeBigForm.scss'
+import ScreenHomeRegister from '../ScreenHomeRegister/ScreenHomeRegister'
 
 export default function ScreenHomeBigForm() {
-  return <div className='bigFormContainer'>lorem ipsum</div>
+  return (
+    <div className='bigFormContainer'>
+      <ScreenHomeRegister />
+    </div>
+  )
 }
