@@ -1,22 +1,11 @@
 import React, { useState } from 'react'
 import { Radio, Space } from 'antd'
+import './Question.scss'
 
 export default function Question({ question, index }) {
   const [value, setValue] = useState(1)
   const onChange = (e) => {
-    console.log('radio checked', e.target.value)
-    GetData()
     setValue(e.target.value)
-  }
-
-  const GetData = () => {
-    fetch(`http://localhost:1880/quizz/1`)
-      .then((res) => {
-        console.log(res.json())
-      })
-      .then((data) => {
-        console.log(data)
-      })
   }
 
   const { content, answer } = question

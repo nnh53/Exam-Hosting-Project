@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&display=swap');
+.ScreenQuiz {
+  background-color: pink;
+  font-family: 'Noto Sans', sans-serif;
+  > .questionList {
+    background-color: white;
+    width: 70%;
+    margin: 0 auto;
+    padding: 4rem 5rem;
+    border: solid 1px black;
+    border-radius: 2rem;
+  }
+}
