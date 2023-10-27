@@ -1,8 +1,8 @@
 import React from 'react'
-import Question from '../../components/Question'
+import Question from '../../components/Question/Question'
 import { GetData } from './QuizService'
 import './ScreenQuiz.scss'
-import SubmitButton from '../Button/SubmitButton'
+import SubmitButton from '../../components/Button/SubmitButton'
 
 const quiz = await GetData(1)
 

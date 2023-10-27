@@ -1,5 +1,6 @@
 import React from 'react'
 import './CustomButton.scss'
+import { ConfigProvider } from 'antd'
 
 export default function CustomButton({ text, isSuccess, classContent }) {
   return (
