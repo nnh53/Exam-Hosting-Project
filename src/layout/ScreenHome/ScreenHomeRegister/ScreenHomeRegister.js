@@ -4,14 +4,28 @@ import './ScreenHomeRegister.scss'
 import { Form, Input, message } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import SubmitButton from '../../../components/Buttons/SubmitButton'
+import { GetData } from '../../../utils/QuizService'
 
 const App = () => {
   const nav = useNavigate()
   const [form] = Form.useForm()
-  const onFinish = () => {
+
+  const onFinish = (values) => {
     message.success('Submit success!')
-    nav('/quiz')
+
+    // Access the user input data here
+    const { 'Full Name': fullName, Email, 'Test ID': testId } = values
+
+    if (GetData(testId)) {
+      localStorage.setItem('fullName', JSON.stringify(fullName))
+      localStorage.setItem('Email', JSON.stringify(Email))
+      localStorage.setItem('testId', JSON.stringify(testId))
+      //nav('/quiz')
+    } else {
+      message.error('Test not exist!')
+    }
   }
+
   const onFinishFailed = () => {
     message.error('Submit failed!')
   }
@@ -49,6 +63,22 @@ const App = () => {
           ]}
         >
           <Input placeholder='Input your Email' />
+        </Form.Item>
+
+        <Form.Item
+          name='Test ID'
+          label='Test ID'
+          rules={[
+            {
+              required: true
+            },
+            {
+              type: 'string',
+              min: 6
+            }
+          ]}
+        >
+          <Input placeholder='Input Test ID' />
         </Form.Item>
 
         <Form.Item>
