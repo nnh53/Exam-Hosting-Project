@@ -2,8 +2,8 @@ import React from 'react'
 
 import './ScreenHomeRegister.scss'
 import { Form, Input, message } from 'antd'
-import SubmitButton from '../../Button/SubmitButton'
 import { useNavigate } from 'react-router-dom'
+import SubmitButton from '../../../components/Buttons/SubmitButton'
 
 const App = () => {
   const nav = useNavigate()
