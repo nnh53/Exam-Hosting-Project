@@ -1,5 +1,5 @@
 import React from 'react'
-import Question from '../../components/Question'
+import Question from '../../components/Question/Question'
 import { GetData, getDateTimeAfter20Mins } from './QuizService'
 import './ScreenQuiz.scss'
 import { CountDownTimer } from '../../components/CountDownTimer/CountDownTimer'
