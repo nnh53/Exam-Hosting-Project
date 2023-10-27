@@ -3,8 +3,14 @@ var express = require('express')
 var RED = require('node-red')
 const PORT = 8000
 
+const cors = require('cors')
+const corsOptions = {
+  origin: 'http://localhost:3000'
+}
+
 // Create an Express app
 var app = express()
+app.use(cors(corsOptions))
 
 // Add a simple route for static content served from 'public'
 app.use('/', express.static('public'))

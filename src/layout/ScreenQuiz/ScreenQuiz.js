@@ -2,7 +2,8 @@ import React from 'react'
 import Question from '../../components/Question/Question'
 import { GetData } from './QuizService'
 import './ScreenQuiz.scss'
-import SubmitButton from '../../components/Button/SubmitButton'
+import SubmitButton from '../Button/SubmitButton'
+import { CountDownTimer } from '../../components/CountDownTimer/CountDownTimer'
 
 const quiz = await GetData(1)
 
@@ -13,6 +14,9 @@ export default function ScreenQuiz() {
   // luôn luôn gọi api tại main screen
   // truyền data cho các component con => tái sử dụng
   // đạt chuẩn The Single Source Of Truth
+  const THREE_DAYS_IN_MS = 3 * 24 * 60 * 60 * 1000
+  const NOW_IN_MS = new Date().getTime()
+  const dateTimeAfterThreeDays = NOW_IN_MS + THREE_DAYS_IN_MS
 
   return (
     <div className='ScreenQuiz'>
@@ -27,6 +31,10 @@ export default function ScreenQuiz() {
       </div>
       <SubmitButton />
       <div style={{ height: 100 }}></div>
+      <div>
+        <h1>Countdown Timer</h1>
+        <CountDownTimer targetDate={dateTimeAfterThreeDays} />
+      </div>
     </div>
   )
 }

@@ -3,11 +3,14 @@ import React from 'react'
 import './ScreenHomeRegister.scss'
 import { Form, Input, message } from 'antd'
 import SubmitButton from '../../Button/SubmitButton'
+import { useNavigate } from 'react-router-dom'
 
 const App = () => {
+  const nav = useNavigate()
   const [form] = Form.useForm()
   const onFinish = () => {
     message.success('Submit success!')
+    nav('/quiz')
   }
   const onFinishFailed = () => {
     message.error('Submit failed!')
