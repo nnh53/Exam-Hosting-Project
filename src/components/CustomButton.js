@@ -1,26 +1,23 @@
 import React from 'react'
-import './CustomButton.scss'
-import { ConfigProvider } from 'antd'
+import { Button, ConfigProvider, Space } from 'antd'
 
-export default function CustomButton({ text, isSuccess, classContent }) {
+export default function CustomButton({ text, type, classContent, linkTo }) {
   return (
     <ConfigProvider
       theme={{
         components: {
           Button: {
-            /* here is your component tokens */
+            contentFontSize: 40,
+            controlHeight: 70
           }
         }
       }}
     >
-      <button
-        className={classContent}
-        style={{
-          background: isSuccess ? 'Green' : 'Red'
-        }}
-      >
-        {text}
-      </button>
+      <Space wrap>
+        <Button className={classContent} type={type} href={linkTo}>
+          {text}
+        </Button>
+      </Space>
     </ConfigProvider>
   )
 }

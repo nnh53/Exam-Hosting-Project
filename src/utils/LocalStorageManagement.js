@@ -12,3 +12,11 @@ export const addItemToLS = (quizId, ansId) => {
   //lưu lại lên localStorage
   localStorage.setItem('userChoice', JSON.stringify(list))
 }
+
+export const getStartTime = () => {
+  return JSON.parse(localStorage.getItem('startTime')) || null
+}
+
+export const saveStartTime = (time) => {
+  localStorage.setItem('startTime', JSON.stringify(time))
+}
