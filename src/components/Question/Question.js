@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Radio, Space } from 'antd'
 import './Question.scss'
-import { addItemToLS } from '../utils/LocalStorageManagement'
+import { addItemToLS } from '../../utils/LocalStorageManagement'
 
 export default function Question({ question, index }) {
   const { quizId, content, answer } = question
