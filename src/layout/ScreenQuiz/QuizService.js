@@ -1,5 +1,5 @@
 // gọi API
-const API_URL = 'http://localhost:8000/api/quizz/'
+const API_URL = 'http://localhost:8000/api/quiz/'
 
 export const GetData = async (quizId) => {
   const response = await fetch(`${API_URL}${quizId}`, {
