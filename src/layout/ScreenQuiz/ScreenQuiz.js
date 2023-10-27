@@ -2,6 +2,7 @@ import React from 'react'
 import Question from '../../components/Question'
 import { GetData } from './QuizService'
 import './ScreenQuiz.scss'
+import SubmitButton from '../Button/SubmitButton'
 
 const quiz = await GetData(1)
 
@@ -20,6 +21,7 @@ export default function ScreenQuiz() {
           return <Question key={index} question={question} index={index + 1} />
         })}
       </div>
+      <SubmitButton />
     </div>
   )
 }
