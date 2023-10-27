@@ -200,7 +200,7 @@
         "type": "function",
         "z": "950305dd92b2f548",
         "name": "function 20",
-        "func": "msg.payload.lsQuizz.forEach(function(quiz) {\n        quiz.answer.forEach(function(answer) {\n            delete answer.isCorrect;\n        });\n});\nreturn msg;",
+        "func": "\nmsg.payload.lsQuizz.forEach(function(quiz) {\n        quiz.answer.forEach(function(answer) {\n            delete answer.isCorrect;\n        });\n});\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,

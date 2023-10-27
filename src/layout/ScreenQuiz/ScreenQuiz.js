@@ -16,12 +16,17 @@ export default function ScreenQuiz() {
 
   return (
     <div className='ScreenQuiz'>
+      <header className='quizHeader'>
+        <h1>FINAL TEST</h1>
+        <h3>You have 20 minutes to finish this test</h3>
+      </header>
       <div className='questionList'>
         {quiz.lsQuizz.map((question, index) => {
           return <Question key={index} question={question} index={index + 1} />
         })}
       </div>
       <SubmitButton />
+      <div style={{ height: 100 }}></div>
     </div>
   )
 }

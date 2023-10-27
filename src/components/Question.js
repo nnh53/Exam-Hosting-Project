@@ -6,10 +6,10 @@ import { addItemToLS } from '../utils/LocalStorageManagement'
 export default function Question({ question, index }) {
   const { quizId, content, answer } = question
 
-  const [value, setValue] = useState(1)
+  const [value, setValue] = useState(0)
   const onChange = (e) => {
     setValue(e.target.value)
-    addItemToLS(quizId, answer[value - 1].ansId)
+    addItemToLS(quizId, answer[e.target.value - 1].ansId)
   }
 
   return (

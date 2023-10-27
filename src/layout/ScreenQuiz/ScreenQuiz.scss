@@ -5,6 +5,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  > .quizHeader {
+    padding: 3rem;
+    text-align: center;
+    > h1 {
+      font-size: 4rem;
+      color: blue;
+    }
+    > h3 {
+      font-size: 2rem;
+    }
+  }
   > .questionList {
     background-color: white;
     width: 70%;
