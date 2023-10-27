@@ -1,14 +1,25 @@
-import React from "react";
+import React from 'react'
+import './CustomButton.scss'
 
 export default function CustomButton({ text, isSuccess, classContent }) {
-    return (
-        <button
-            className={classContent}
-            style={{
-                background: isSuccess ? "Green" : "Red",
-            }}
-        >
-            {text}
-        </button>
-    );
+  return (
+    <ConfigProvider
+      theme={{
+        components: {
+          Button: {
+            /* here is your component tokens */
+          }
+        }
+      }}
+    >
+      <button
+        className={classContent}
+        style={{
+          background: isSuccess ? 'Green' : 'Red'
+        }}
+      >
+        {text}
+      </button>
+    </ConfigProvider>
+  )
 }
