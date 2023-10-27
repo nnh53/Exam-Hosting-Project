@@ -4,7 +4,9 @@ var RED = require('node-red')
 const PORT = 8000
 
 const cors = require('cors')
-const corsOptions = { origin: 'https//localhost:3000' }
+const corsOptions = {
+  origin: 'http://localhost:3000'
+}
 
 // Create an Express app
 var app = express()
