@@ -3,16 +3,23 @@ import { getStartTime, saveStartTime } from '../utils/LocalStorageManagement'
 // gọi API
 const API_URL = 'http://localhost:8000/api/quiz/'
 
-export const GetData = async (quizId) => {
+export const getQuiz = async (quizId) => {
   const response = await fetch(`${API_URL}${quizId}`)
 
-  console.log('respone')
-  console.log(response)
+  if (response.status == 200) {
+    const data = await response.json()
 
-  if (response.ok) {
-    console.log(response.json())
-    return response.json()
+    // Check if the response contains data
+    if (Object.keys(data).length === 0) {
+      console.log('Response does not contain data.')
+      return null // No data found
+    }
+
+    console.log('Data:', data)
+    debugger
+    return data
   } else {
+    console.log('Server returned an error:', response.statusText)
     return null
   }
 }

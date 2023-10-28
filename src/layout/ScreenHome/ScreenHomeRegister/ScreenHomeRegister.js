@@ -4,23 +4,26 @@ import './ScreenHomeRegister.scss'
 import { Form, Input, message } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import SubmitButton from '../../../components/Buttons/SubmitButton'
-import { GetData } from '../../../utils/QuizService'
+import { getQuiz } from '../../../utils/QuizService'
 
 const App = () => {
   const nav = useNavigate()
   const [form] = Form.useForm()
 
   const onFinish = (values) => {
-    message.success('Submit success!')
-
     // Access the user input data here
     const { 'Full Name': fullName, Email, 'Test ID': testId } = values
 
-    if (GetData(testId)) {
+    const data = getQuiz(testId).then((data) => {
+      console.log(data)
+    })
+
+    if (data !== null) {
       localStorage.setItem('fullName', JSON.stringify(fullName))
       localStorage.setItem('Email', JSON.stringify(Email))
       localStorage.setItem('testId', JSON.stringify(testId))
-      //nav('/quiz')
+      // nav('/quiz')
+      message.success('Submit success!')
     } else {
       message.error('Test not exist!')
     }
