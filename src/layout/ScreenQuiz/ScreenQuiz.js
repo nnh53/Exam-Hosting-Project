@@ -1,11 +1,11 @@
 import React from 'react'
 import Question from '../../components/Question/Question'
-import { GetData, getDateTimeAfter20Mins } from './QuizService'
+import { getDateTimeAfter20Mins } from '../../utils/QuizService'
 import './ScreenQuiz.scss'
 import { CountDownTimer } from '../../components/CountDownTimer/CountDownTimer'
 import CustomButton from '../../components/CustomButton'
 
-const quiz = await GetData(1)
+const quiz = ''
 
 export default function ScreenQuiz() {
   // main screen

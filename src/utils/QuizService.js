@@ -1,12 +1,20 @@
-import { getStartTime, saveStartTime } from '../../utils/LocalStorageManagement'
+import { getStartTime, saveStartTime } from '../utils/LocalStorageManagement'
 
 // gọi API
 const API_URL = 'http://localhost:8000/api/quiz/'
 
 export const GetData = async (quizId) => {
   const response = await fetch(`${API_URL}${quizId}`)
-  const data = await response.json()
-  return data
+
+  console.log('respone')
+  console.log(response)
+
+  if (response.ok) {
+    console.log(response.json())
+    return response.json()
+  } else {
+    return null
+  }
 }
 
 export const getDateTimeAfter20Mins = () => {
