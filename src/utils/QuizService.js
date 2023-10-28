@@ -6,7 +6,7 @@ const API_URL = 'http://localhost:8000/api/quiz/'
 export const getQuiz = async (quizId) => {
   const response = await fetch(`${API_URL}${quizId}`)
 
-  if (response.status == 200) {
+  if (response.status === 200) {
     const data = await response.json()
 
     // Check if the response contains data
@@ -15,8 +15,8 @@ export const getQuiz = async (quizId) => {
       return null // No data found
     }
 
-    console.log('Data:', data)
-    debugger
+    // console.log('Data:', data)
+    // debugger
     return data
   } else {
     console.log('Server returned an error:', response.statusText)

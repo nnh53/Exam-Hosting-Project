@@ -1,5 +1,4 @@
-import React from 'react'
-
+import React, { useState } from 'react'
 import './ScreenHomeRegister.scss'
 import { Form, Input, message } from 'antd'
 import { useNavigate } from 'react-router-dom'
@@ -7,23 +6,21 @@ import SubmitButton from '../../../components/Buttons/SubmitButton'
 import { getQuiz } from '../../../utils/QuizService'
 
 const App = () => {
-  const nav = useNavigate()
   const [form] = Form.useForm()
+  // const [data, setData] = useState({})
+  const nav = useNavigate()
 
-  const onFinish = (values) => {
+  const onFinish = async (values) => {
     // Access the user input data here
     const { 'Full Name': fullName, Email, 'Test ID': testId } = values
+    const data = await getQuiz(testId)
 
-    const data = getQuiz(testId).then((data) => {
-      console.log(data)
-    })
-
-    if (data !== null) {
+    if (data != null) {
       localStorage.setItem('fullName', JSON.stringify(fullName))
       localStorage.setItem('Email', JSON.stringify(Email))
       localStorage.setItem('testId', JSON.stringify(testId))
-      // nav('/quiz')
       message.success('Submit success!')
+      nav('/quiz', { state: { data } })
     } else {
       message.error('Test not exist!')
     }

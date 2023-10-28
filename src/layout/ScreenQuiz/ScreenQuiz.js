@@ -4,8 +4,7 @@ import { getDateTimeAfter20Mins } from '../../utils/QuizService'
 import './ScreenQuiz.scss'
 import { CountDownTimer } from '../../components/CountDownTimer/CountDownTimer'
 import CustomButton from '../../components/CustomButton'
-
-const quiz = ''
+import { useLocation } from 'react-router-dom'
 
 export default function ScreenQuiz() {
   // main screen
@@ -14,6 +13,9 @@ export default function ScreenQuiz() {
   // luôn luôn gọi api tại main screen
   // truyền data cho các component con => tái sử dụng
   // đạt chuẩn The Single Source Of Truth
+  const location = useLocation()
+  const quiz = location.state.data
+  console.log(quiz)
 
   const dateTimeAfter20Mins = getDateTimeAfter20Mins()
 
