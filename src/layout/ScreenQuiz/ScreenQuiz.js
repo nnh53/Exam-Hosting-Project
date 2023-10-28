@@ -14,8 +14,8 @@ export default function ScreenQuiz() {
   // truyền data cho các component con => tái sử dụng
   // đạt chuẩn The Single Source Of Truth
   const location = useLocation()
-  const quiz = location.state.data
-  console.log(quiz)
+  let quiz = location.state.data
+  const lzQuiz = Object.values(quiz.lsQuizz)
 
   const dateTimeAfter20Mins = getDateTimeAfter20Mins()
 
@@ -29,7 +29,7 @@ export default function ScreenQuiz() {
         </div>
       </header>
       <div className='questionList'>
-        {quiz.lsQuizz.map((question, index) => {
+        {lzQuiz.map((question, index) => {
           return <Question key={index} question={question} index={index + 1} />
         })}
       </div>

@@ -3,7 +3,7 @@ import { Checkbox } from 'antd'
 import { addItemToLS, getAnswer } from '../utils/LocalStorageManagement'
 
 export default function CheckboxCom({ question }) {
-  const { quizId, answer, isMutiple } = question
+  const { id, answer, isMutiple } = question
   const [selectedValues, setSelectedValues] = useState([])
   const onChange = (e) => {
     const selectedValue = e.target.value
@@ -15,10 +15,10 @@ export default function CheckboxCom({ question }) {
       // Nếu bỏ chọn, loại bỏ giá trị khỏi mảng selectedValues
       setSelectedValues(selectedValues.filter((value) => value !== selectedValue))
     }
-    addItemToLS(quizId, e.target.value, isMutiple)
+    addItemToLS(id, e.target.value, isMutiple)
   }
   useEffect(() => {
-    let ansList = getAnswer(quizId)
+    let ansList = getAnswer(id)
     if (ansList) {
       setSelectedValues([...ansList])
     }
@@ -28,7 +28,7 @@ export default function CheckboxCom({ question }) {
     <div>
       {answer.map((item, index) => (
         <div style={{ margin: '10px 0' }} key={index}>
-          <Checkbox value={item.ansId} checked={selectedValues.includes(item.ansId)} onChange={onChange}>
+          <Checkbox value={item.id} checked={selectedValues.includes(item.id)} onChange={onChange}>
             {item.content}
           </Checkbox>
         </div>
