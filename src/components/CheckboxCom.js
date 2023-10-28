@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Checkbox } from 'antd'
-import { addItemToLS } from '../utils/LocalStorageManagement'
+import { addItemToLS, getAnswer } from '../utils/LocalStorageManagement'
 
 export default function CheckboxCom({ question }) {
   const { quizId, answer, isMutiple } = question
@@ -17,6 +17,13 @@ export default function CheckboxCom({ question }) {
     }
     addItemToLS(quizId, e.target.value, isMutiple)
   }
+  useEffect(() => {
+    let ansList = getAnswer(quizId)
+    if (ansList) {
+      setSelectedValues([...ansList])
+    }
+  }, [])
+
   return (
     <div>
       {answer.map((item, index) => (
