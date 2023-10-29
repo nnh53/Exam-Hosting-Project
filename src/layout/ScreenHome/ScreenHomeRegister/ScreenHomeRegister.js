@@ -19,7 +19,9 @@ const App = () => {
       const userInfo = { name: fullName, email: Email, testId: testId };
       addUserInforToLs(userInfo);
       // message.success("Submit success!");
-      nav("/quiz", { state: { data, userInfo } }); //CHỖ NÀY TRUYỀN THÊM THỜI GIAN NÈ Q !!!!!!!!!!!!!
+      const now = new Date().getMinutes();
+
+      nav("/quiz", { state: { data, userInfo }, start_time: { now } }); //CHỖ NÀY TRUYỀN THÊM THỜI GIAN NÈ Q !!!!!!!!!!!!!
     } else {
       message.error("Test not exist!");
     }
