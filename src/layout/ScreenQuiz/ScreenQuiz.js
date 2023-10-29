@@ -49,7 +49,7 @@ export default function ScreenQuiz() {
     <div className="ScreenQuiz">
       <header className="header">
         <Title />
-        <span>You have 20 minutes to finish this test</span>
+        <p>You have 20 minutes to finish this test</p>
         <CountDownTimer />
       </header>
 

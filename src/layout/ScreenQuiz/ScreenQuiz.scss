@@ -1,18 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&display=swap");
 
 .ScreenQuiz {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
 
   .header {
-    span {
+    p {
       color: white;
+      text-align: center;
       font-size: large;
+      padding: 0 auto;
     }
   }
 
   .questionList {
-    padding: 50px 50px;
+    padding: 50px 150px;
   }
 }
