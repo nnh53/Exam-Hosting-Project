@@ -1,15 +1,18 @@
 import React from "react";
 import "./ScreenHome.scss";
-import ScreenHomeBigForm from "./ScreenHomeBigForm/ScreenHomeBigForm";
 import Title from "../../components/Title/Title";
+import BigForm from "../../components/BigForm/BigForm";
+import ScreenHomeRegister from "./ScreenHomeRegister/ScreenHomeRegister";
 
 export default function ScreenHome() {
   return (
-    <div className="container">
+    <div className="ScreenHome">
       <header className="header">
         <Title />
       </header>
-      <ScreenHomeBigForm />
+      <BigForm>
+        <ScreenHomeRegister />
+      </BigForm>
     </div>
   );
 }

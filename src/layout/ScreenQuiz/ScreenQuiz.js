@@ -29,8 +29,6 @@ export default function ScreenQuiz() {
       </div>
 
       <CustomButton linkTo={"/quiz/1/answer"} type={"primary"} text={"SUBMIT"} />
-
-      <div style={{ height: 100 }}></div>
     </div>
   );
 }

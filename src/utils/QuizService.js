@@ -1,4 +1,4 @@
-import { getStartTime, saveStartTime } from "./LocalStorageManagement";
+import { getStartTime, saveStartTime } from "./localStorageManagement";
 
 // gọi API
 const API_URL = "http://localhost:8000/api/quiz/";
