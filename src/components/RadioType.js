@@ -1,6 +1,6 @@
 import { Radio, Space } from "antd";
 import React, { useEffect, useState } from "react";
-import { addItemToLS, getAnswer } from "../utils/localStorageManagement";
+import { addItemToLS, getAnswer } from "../utils/LocalStorageManagement";
 
 export default function RadioType({ question }) {
   const { id, answer, isMultiple } = question;

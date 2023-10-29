@@ -2,7 +2,7 @@ import "./ScreenHomeRegister.scss";
 import { Form, Input, message } from "antd";
 import { useNavigate } from "react-router-dom";
 import SubmitButton from "../../../components/Buttons/SubmitButton";
-import { getQuiz } from "../../../utils/quizService";
+import { getQuiz } from "../../../utils/QuizService";
 
 const App = () => {
   const [form] = Form.useForm();

@@ -1,6 +1,6 @@
 import React from "react";
 import Question from "../../components/Question/Question";
-import { getDateTimeAfter20Mins } from "../../utils/quizService";
+import { getDateTimeAfter20Mins } from "../../utils/QuizService";
 import "./ScreenQuiz.scss";
 import CountDownTimer from "../../components/CountDownTimer/CountDownTimer";
 import CustomButton from "../../components/CustomButton";

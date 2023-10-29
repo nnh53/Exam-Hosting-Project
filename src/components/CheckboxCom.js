@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Checkbox } from "antd";
-import { addItemToLS, getAnswer } from "../utils/localStorageManagement";
+import { addItemToLS, getAnswer } from "../utils/LocalStorageManagement";
 
 export default function CheckboxCom({ question }) {
   const { id, answer, isMutiple } = question;
