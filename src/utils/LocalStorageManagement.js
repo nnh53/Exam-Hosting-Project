@@ -73,7 +73,6 @@ export const saveStartTime = (time) => {
 export const getAnswer = (quizId, userName) => {
   let list = getList();
   let data = list.find((item) => item.name === userName);
-  console.log(data);
   let result = data.choice.find((item) => item.questionId === quizId);
   return result ? result.ansIdList : null;
 };
