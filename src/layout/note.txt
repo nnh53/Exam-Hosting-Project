@@ -2,3 +2,12 @@
 ---
 triển khai giao điện đại diện cho ứng dụng
 các component con sẽ được triển khai theo cấp cha -> con
+
+---
+
+main screen
+Container component - luôn luôn gọi API tại main screen
+Presentation Component - Component con nhận data
+luôn luôn gọi api tại main screen
+truyền data cho các component con => tái sử dụng
+đạt chuẩn The Single Source Of Truth

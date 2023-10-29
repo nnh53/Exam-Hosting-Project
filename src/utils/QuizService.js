@@ -15,8 +15,7 @@ export const getQuiz = async (quizId) => {
       return null // No data found
     }
 
-    // console.log('Data:', data)
-    // debugger
+    console.log('Data:', data)
     return data
   } else {
     console.log('Server returned an error:', response.statusText)

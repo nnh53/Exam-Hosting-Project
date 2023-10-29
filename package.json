@@ -19,7 +19,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "dev": "concurrently --kill-others \"npm run start\" \"node start_node_red.js\"",
+    "dev": "concurrently --kill-others \"npm run start\" \"node start-node-red.js\"",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -46,5 +46,8 @@
   "devDependencies": {
     "concurrently": "^8.2.2",
     "sass": "^1.69.5"
+  },
+  "prettier": {
+    "printWidth": 120
   }
 }

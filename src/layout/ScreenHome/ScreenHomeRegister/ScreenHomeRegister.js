@@ -74,7 +74,7 @@ const App = () => {
             },
             {
               type: 'string',
-              min: 6
+              min: 0
             }
           ]}
         >
