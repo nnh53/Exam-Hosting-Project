@@ -2,7 +2,7 @@ import { Form, Input, message } from "antd";
 import { useNavigate } from "react-router-dom";
 import "./ScreenHomeRegister.scss";
 import SubmitButton from "../../../components/Buttons/SubmitButton";
-import { getQuiz } from "../../../utils/QuizService";
+import { getQuiz } from "../../../utils/quizService";
 import { addUserInforToLs } from "../../../utils/LocalStorageManagement";
 
 const App = () => {
@@ -18,7 +18,7 @@ const App = () => {
     if (data != null) {
       const userInfo = { name: fullName, email: Email, testId: testId };
       addUserInforToLs(userInfo);
-      message.success("Submit success!");
+      // message.success("Submit success!");
       nav("/quiz", { state: { data, userInfo } }); //CHỖ NÀY TRUYỀN THÊM THỜI GIAN NÈ Q !!!!!!!!!!!!!
     } else {
       message.error("Test not exist!");

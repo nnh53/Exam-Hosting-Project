@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, ConfigProvider } from "antd";
+import "./SubmitButton.scss";
 
 export default function SubmitButton({ linkTo }) {
   return (
@@ -7,15 +8,17 @@ export default function SubmitButton({ linkTo }) {
       theme={{
         components: {
           Button: {
-            contentFontSize: 50,
-            controlHeight: 80,
+            contentFontSize: 30,
+            controlHeight: 50,
           },
         },
       }}
     >
-      <Button type="primary" htmlType="submit" className="SubmitButton" href={linkTo}>
-        Submit
-      </Button>
+      <div className="container">
+        <Button type="primary" htmlType="submit" className="SubmitButton" href={linkTo}>
+          Submit
+        </Button>
+      </div>
     </ConfigProvider>
   );
 }
