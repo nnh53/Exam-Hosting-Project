@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Checkbox } from "antd";
-import { addItemToLS, getAnswer } from "../utils/localStorageManagement";
+import { addItemToLS, getAnswer } from "../utils/LocalStorageManagement";
 
-export default function CheckboxCom({ question }) {
+export default function CheckboxCom({ question, name }) {
   const { id, answer, isMutiple } = question;
   const [selectedValues, setSelectedValues] = useState([]);
   const onChange = (e) => {
@@ -15,10 +15,10 @@ export default function CheckboxCom({ question }) {
       // Nếu bỏ chọn, loại bỏ giá trị khỏi mảng selectedValues
       setSelectedValues(selectedValues.filter((value) => value !== selectedValue));
     }
-    addItemToLS(id, e.target.value, isMutiple);
+    addItemToLS(id, e.target.value, isMutiple, name);
   };
   useEffect(() => {
-    let ansList = getAnswer(id);
+    let ansList = getAnswer(id, name);
     if (ansList) {
       setSelectedValues([...ansList]);
     }

@@ -1,20 +1,20 @@
 import { Radio, Space } from "antd";
 import React, { useEffect, useState } from "react";
-import { addItemToLS, getAnswer } from "../utils/localStorageManagement";
+import { addItemToLS, getAnswer } from "../utils/LocalStorageManagement";
 
-export default function RadioType({ question }) {
+export default function RadioType({ question, name }) {
   const { id, answer, isMultiple } = question;
   //   console.log(quizId, answer)
   const [value, setValue] = useState(0);
 
   const onChange = (e) => {
     setValue(e.target.value);
-    addItemToLS(id, e.target.value, isMultiple);
+    addItemToLS(id, e.target.value, isMultiple, name);
   };
 
   useEffect(() => {
-    if (getAnswer(id)) {
-      let aId = getAnswer(id)[0];
+    if (getAnswer(id, name)) {
+      let aId = getAnswer(id, name)[0];
       setValue(aId);
     }
   }, []);

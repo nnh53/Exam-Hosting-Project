@@ -1,6 +1,6 @@
 import React from "react";
 import Question from "../../components/Question/Question";
-import { getDateTimeAfter20Mins } from "../../utils/quizService";
+import { getDateTimeAfter20Mins } from "../../utils/QuizService";
 import "./ScreenQuiz.scss";
 import CountDownTimer from "../../components/CountDownTimer/CountDownTimer";
 import CustomButton from "../../components/CustomButton";
@@ -11,9 +11,8 @@ import BigForm from "../../components/BigForm/BigForm";
 export default function ScreenQuiz() {
   const location = useLocation();
   let quiz = location.state.data;
+  const name = location.state.userInfo.name;
   const lzQuiz = Object.values(quiz.lsQuizz);
-
-  const dateTimeAfter20Mins = getDateTimeAfter20Mins();
 
   return (
     <div className="ScreenQuiz">
@@ -26,7 +25,7 @@ export default function ScreenQuiz() {
       <BigForm>
         <div className="questionList">
           {lzQuiz.map((question, index) => {
-            return <Question key={index} question={question} index={index + 1} />;
+            return <Question name={name} key={index} question={question} index={index + 1} />;
           })}
         </div>
 

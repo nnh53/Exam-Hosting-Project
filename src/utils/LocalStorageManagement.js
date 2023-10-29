@@ -1,42 +1,79 @@
 // getList(): khi gọi hàm sẽ nhận đc danh sách các item  //do lưu từ localStorage
 export const getList = () => {
-  return JSON.parse(localStorage.getItem('userChoice')) || []
-}
+  return JSON.parse(localStorage.getItem("user")) || [];
+};
 
-export const addItemToLS = (quizId, ansId, isMutiple) => {
+// {
+//   name: "Nguyen Van A";
+//   email: "test@gmail.com";
+//   testId: "123456";
+//   quizId: "123";
+//   choice: [
+//     {
+//       questionId: "123",
+//       ansIdList: ["123", "456"],
+//     },
+//     {
+//       questionId: "123",
+//       ansIdList: ["123", "456"],
+//     },
+//     {
+//       questionId: "123",
+//       ansIdList: ["123", "456"],
+//     },
+//     {
+//       questionId: "123",
+//       ansIdList: ["123", "456"],
+//     }
+//   ];
+// }
+
+// hàm lưu name, email, quizId vào localStorage
+export const addUserInforToLs = (userInfo) => {
+  let list = getList();
+  list.push({ ...userInfo, choice: [] });
+  localStorage.setItem("user", JSON.stringify(list));
+};
+
+// hàm lưu đáp án người dùng chọn vào localStorage
+export const addItemToLS = (quizId, ansId, isMutiple, name) => {
   // lấy list từ ls về
-  let list = getList()
+  let list = getList();
+  let data = list.find((item) => item.name === name);
+  console.log(data);
   if (isMutiple) {
     // tìm xem có quizId nào trong list chưa
-    let quiz = list.find((item) => item.quizId === quizId)
-    if (quiz) {
+    let question = data.choice.find((item) => item.questionId === quizId);
+    if (question) {
       // nếu có thì thêm ansId vào quiz đó
-      console.log(ansId)
-      quiz.ansIdList.push(ansId)
+      console.log(ansId);
+      question.ansIdList.push(ansId);
     } else {
       // nếu chưa có thì tạo mới
-      list.push({ quizId, ansIdList: [ansId] })
+      data.choice.push({ questionId: quizId, ansIdList: [ansId] });
     }
   } else {
-    list = list.filter((item) => item.quizId !== quizId)
+    data.choice = data.choice.filter((item) => item.questionId !== quizId);
     // nhét item vào list
-    list.push({ quizId, ansIdList: [ansId] })
+    data.choice.push({ questionId: quizId, ansIdList: [ansId] });
   }
 
   //lưu lại lên localStorage
-  localStorage.setItem('userChoice', JSON.stringify(list))
-}
+  localStorage.setItem("user", JSON.stringify(list));
+};
 
 export const getStartTime = () => {
-  return JSON.parse(localStorage.getItem('startTime')) || null
-}
+  return JSON.parse(localStorage.getItem("startTime")) || null;
+};
 
 export const saveStartTime = (time) => {
-  localStorage.setItem('startTime', JSON.stringify(time))
-}
+  localStorage.setItem("startTime", JSON.stringify(time));
+};
 
-export const getAnswer = (quizId) => {
-  let list = getList()
-  let quiz = list.find((item) => item.quizId === quizId)
-  return quiz ? quiz.ansIdList : null
-}
+export const getAnswer = (quizId, userName) => {
+  let list = getList();
+  let data = list.find((item) => item.name === userName);
+  console.log(data);
+  let result = data.choice.find((item) => item.questionId === quizId);
+  return result ? result.ansIdList : null;
+};

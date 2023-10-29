@@ -2,7 +2,8 @@ import { Form, Input, message } from "antd";
 import { useNavigate } from "react-router-dom";
 import "./ScreenHomeRegister.scss";
 import SubmitButton from "../../../components/Buttons/SubmitButton";
-import { getQuiz } from "../../../utils/quizService";
+import { getQuiz } from "../../../utils/QuizService";
+import { addUserInforToLs } from "../../../utils/LocalStorageManagement";
 
 const App = () => {
   const [form] = Form.useForm();
@@ -10,15 +11,15 @@ const App = () => {
 
   const onFinish = async (values) => {
     // Access the user input data here
+    console.log(values);
     const { "Full Name": fullName, Email, "Test ID": testId } = values;
     const data = await getQuiz(testId);
 
     if (data != null) {
-      localStorage.setItem("fullName", JSON.stringify(fullName));
-      localStorage.setItem("Email", JSON.stringify(Email));
-      localStorage.setItem("testId", JSON.stringify(testId));
+      const userInfo = { name: fullName, email: Email, testId: testId };
+      addUserInforToLs(userInfo);
       message.success("Submit success!");
-      nav("/quiz", { state: { data } }); //CHỖ NÀY TRUYỀN THÊM THỜI GIAN NÈ Q !!!!!!!!!!!!!
+      nav("/quiz", { state: { data, userInfo } }); //CHỖ NÀY TRUYỀN THÊM THỜI GIAN NÈ Q !!!!!!!!!!!!!
     } else {
       message.error("Test not exist!");
     }
