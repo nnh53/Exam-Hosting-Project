@@ -4,6 +4,7 @@ import "./ScreenHomeRegister.scss";
 import SubmitButton from "../../../components/Buttons/SubmitButton";
 import { getQuiz } from "../../../utils/quizService";
 import { addUserInforToLs } from "../../../utils/LocalStorageManagement";
+import { testTime } from "../../../constants/testTime";
 
 const App = () => {
   const [form] = Form.useForm();
@@ -19,9 +20,12 @@ const App = () => {
       const userInfo = { name: fullName, email: Email, testId: testId };
       addUserInforToLs(userInfo);
       // message.success("Submit success!");
-      const now = new Date().getMinutes();
 
-      nav("/quiz", { state: { data, userInfo }, start_time: { now } }); //CHỖ NÀY TRUYỀN THÊM THỜI GIAN NÈ Q !!!!!!!!!!!!!
+      const now = new Date();
+      now.setMinutes(now.getMinutes() + testTime);
+      console.log(now);
+
+      nav("/quiz", { state: { data, userInfo, now } }); //CHỖ NÀY TRUYỀN THÊM THỜI GIAN NÈ Q !!!!!!!!!!!!!
     } else {
       message.error("Test not exist!");
     }

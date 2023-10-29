@@ -6,10 +6,12 @@ const { Countdown } = Statistic;
 
 export default function CountDownTimer() {
   // Calculate the target time (20 minutes from now)
+
   const location = useLocation();
-  const startTime = location.state.start_time;
+
+  const startTime = location.state.now;
   console.log(startTime);
-  const testTimeFromNow = startTime + testTime;
+  const testTimeFromNow = startTime;
 
   return (
     <div style={{ position: "fixed", top: "20px", right: "20px" }}>

@@ -9,6 +9,7 @@ import BigForm from "../../components/BigForm/BigForm";
 
 export default function ScreenQuiz() {
   const location = useLocation();
+
   let quiz = location.state.data;
   const name = location.state.userInfo.name;
   const lzQuiz = Object.values(quiz.lsQuizz);
