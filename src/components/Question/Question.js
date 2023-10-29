@@ -20,11 +20,6 @@ export default function Question({ question, index, name }) {
           {index}. {question.content}
         </h3>
         <RadioType name={name} question={question} />
-
-        {/* <Checkbox onChange={onChange}>Checkbox</Checkbox>
-      <Checkbox onChange={onChange}>Checkbox</Checkbox>
-      <Checkbox onChange={onChange}>Checkbox</Checkbox>
-      <Checkbox onChange={onChange}>Checkbox</Checkbox> */}
       </div>
     );
   }
