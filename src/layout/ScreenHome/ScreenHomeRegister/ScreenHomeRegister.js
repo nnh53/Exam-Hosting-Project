@@ -1,84 +1,82 @@
-import React, { useState } from 'react'
-import './ScreenHomeRegister.scss'
-import { Form, Input, message } from 'antd'
-import { useNavigate } from 'react-router-dom'
-import SubmitButton from '../../../components/Buttons/SubmitButton'
-import { getQuiz } from '../../../utils/QuizService'
+import "./ScreenHomeRegister.scss";
+import { Form, Input, message } from "antd";
+import { useNavigate } from "react-router-dom";
+import SubmitButton from "../../../components/Buttons/SubmitButton";
+import { getQuiz } from "../../../utils/quizService";
 
 const App = () => {
-  const [form] = Form.useForm()
-  // const [data, setData] = useState({})
-  const nav = useNavigate()
+  const [form] = Form.useForm();
+  const nav = useNavigate();
 
   const onFinish = async (values) => {
     // Access the user input data here
-    const { 'Full Name': fullName, Email, 'Test ID': testId } = values
-    const data = await getQuiz(testId)
+    const { "Full Name": fullName, Email, "Test ID": testId } = values;
+    const data = await getQuiz(testId);
 
     if (data != null) {
-      localStorage.setItem('fullName', JSON.stringify(fullName))
-      localStorage.setItem('Email', JSON.stringify(Email))
-      localStorage.setItem('testId', JSON.stringify(testId))
-      message.success('Submit success!')
-      nav('/quiz', { state: { data } })
+      localStorage.setItem("fullName", JSON.stringify(fullName));
+      localStorage.setItem("Email", JSON.stringify(Email));
+      localStorage.setItem("testId", JSON.stringify(testId));
+      message.success("Submit success!");
+      nav("/quiz", { state: { data } });
     } else {
-      message.error('Test not exist!')
+      message.error("Test not exist!");
     }
-  }
+  };
 
   const onFinishFailed = () => {
-    message.error('Submit failed!')
-  }
+    message.error("Submit failed!");
+  };
 
   return (
-    <div className='ScreenHomeRegister'>
-      <Form form={form} layout='vertical' onFinish={onFinish} onFinishFailed={onFinishFailed} autoComplete='off'>
+    <div className="ScreenHomeRegister">
+      <Form form={form} layout="vertical" onFinish={onFinish} onFinishFailed={onFinishFailed} autoComplete="off">
         <Form.Item
-          name='Full Name'
-          label='Full Name'
+          name="Full Name"
+          label="Full Name"
           rules={[
             {
-              required: true
+              required: true,
             },
             {
-              type: 'string',
-              min: 6
-            }
+              type: "string",
+              min: 6,
+            },
           ]}
         >
-          <Input placeholder='Input your Full Name' />
+          <Input placeholder="Input your Full Name" />
         </Form.Item>
 
         <Form.Item
-          name='Email'
-          label='Email'
+          name="Email"
+          label="Email"
           rules={[
             {
-              required: true
+              required: true,
             },
             {
-              type: 'email',
-              min: 6
-            }
+              type: "email",
+              min: 6,
+            },
           ]}
         >
-          <Input placeholder='Input your Email' />
+          <Input placeholder="Input your Email" />
         </Form.Item>
 
         <Form.Item
-          name='Test ID'
-          label='Test ID'
+          name="Test ID"
+          label="Test ID"
           rules={[
             {
-              required: true
+              required: true,
             },
             {
-              type: 'string',
-              min: 0
-            }
+              type: "string",
+              min: 0,
+            },
           ]}
         >
-          <Input placeholder='Input Test ID' />
+          <Input placeholder="Input Test ID" />
         </Form.Item>
 
         <Form.Item>
@@ -86,6 +84,6 @@ const App = () => {
         </Form.Item>
       </Form>
     </div>
-  )
-}
-export default App
+  );
+};
+export default App;
