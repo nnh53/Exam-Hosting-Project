@@ -6,6 +6,7 @@ import CountDownTimer from "../../components/CountDownTimer/CountDownTimer";
 import CustomButton from "../../components/CustomButton";
 import { useLocation } from "react-router-dom";
 import Title from "../../components/Title/Title";
+import BigForm from "../../components/BigForm/BigForm";
 
 export default function ScreenQuiz() {
   const location = useLocation();
@@ -19,16 +20,18 @@ export default function ScreenQuiz() {
       <header className="header">
         <Title />
         <span>You have 20 minutes to finish this test</span>
-        <CountDownTimer targetDate={dateTimeAfter20Mins} />
+        <CountDownTimer />
       </header>
 
-      <div className="questionList">
-        {lzQuiz.map((question, index) => {
-          return <Question key={index} question={question} index={index + 1} />;
-        })}
-      </div>
+      <BigForm>
+        <div className="questionList">
+          {lzQuiz.map((question, index) => {
+            return <Question key={index} question={question} index={index + 1} />;
+          })}
+        </div>
 
-      <CustomButton linkTo={"/quiz/1/answer"} type={"primary"} text={"SUBMIT"} />
+        <CustomButton linkTo={"/quiz/1/answer"} type={"primary"} text={"SUBMIT"} />
+      </BigForm>
     </div>
   );
 }

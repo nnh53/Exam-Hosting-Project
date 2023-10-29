@@ -1,23 +1,21 @@
-import React from 'react'
-import { Button, ConfigProvider, Space } from 'antd'
+import React from "react";
+import { Button, ConfigProvider } from "antd";
 
-export default function CustomButton({ text, type, classContent, linkTo }) {
+export default function CustomButton({ text, type, classContent, linkTo, style }) {
   return (
     <ConfigProvider
       theme={{
         components: {
           Button: {
             contentFontSize: 40,
-            controlHeight: 70
-          }
-        }
+            controlHeight: 70,
+          },
+        },
       }}
     >
-      <Space wrap>
-        <Button className={classContent} type={type} href={linkTo}>
-          {text}
-        </Button>
-      </Space>
+      <Button className={classContent} type={type} href={linkTo} style={style}>
+        {text}
+      </Button>
     </ConfigProvider>
-  )
+  );
 }

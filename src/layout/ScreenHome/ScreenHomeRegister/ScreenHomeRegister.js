@@ -18,7 +18,7 @@ const App = () => {
       localStorage.setItem("Email", JSON.stringify(Email));
       localStorage.setItem("testId", JSON.stringify(testId));
       message.success("Submit success!");
-      nav("/quiz", { state: { data } });
+      nav("/quiz", { state: { data } }); //CHỖ NÀY TRUYỀN THÊM THỜI GIAN NÈ Q !!!!!!!!!!!!!
     } else {
       message.error("Test not exist!");
     }

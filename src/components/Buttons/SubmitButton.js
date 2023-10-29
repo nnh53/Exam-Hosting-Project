@@ -1,22 +1,21 @@
-import { Button, ConfigProvider } from 'antd'
-import React from 'react'
+import React from "react";
+import { Button, ConfigProvider } from "antd";
 
-export default function SubmitButton() {
+export default function SubmitButton({ linkTo }) {
   return (
     <ConfigProvider
       theme={{
         components: {
           Button: {
-            /* here is your component tokens */
             contentFontSize: 50,
-            controlHeight: 80
-          }
-        }
+            controlHeight: 80,
+          },
+        },
       }}
     >
-      <Button type='primary' htmlType='submit' className='SubmitButton'>
+      <Button type="primary" htmlType="submit" className="SubmitButton" href={linkTo}>
         Submit
       </Button>
     </ConfigProvider>
-  )
+  );
 }
