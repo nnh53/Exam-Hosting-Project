@@ -58,7 +58,9 @@ export default function ScreenQuiz() {
           })}
         </div>
 
-        <CustomButton type={"primary"} text={"SUBMIT"} onClick={handleSubmit} />
+        <div className="centerButton">
+          <CustomButton type={"primary"} text={"SUBMIT"} onClick={handleSubmit} />
+        </div>
       </BigForm>
     </div>
   );
