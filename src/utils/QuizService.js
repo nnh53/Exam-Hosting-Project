@@ -1,5 +1,3 @@
-import { getStartTime, saveStartTime } from "./LocalStorageManagement";
-
 // gọi API
 const API_URL = "https://server.nglearns.com/quizz/";
 

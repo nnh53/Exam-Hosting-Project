@@ -41,7 +41,11 @@ export default function ScreenQuiz() {
         }
       })
       .then((data) => {
-        alert(`Your score: ${data}`);
+        if (data !== undefined) {
+          alert(`Your score: ${data}`);
+        } else {
+          alert(`Your score: 0`);
+        }
       })
       .catch((error) => {
         console.log(error);

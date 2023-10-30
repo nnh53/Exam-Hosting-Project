@@ -1,19 +1,18 @@
 import React from "react";
-import SmallForm from "../SmallForm/SmallForm";
 import "./TestAlreadyStartNotification.scss";
 import { Button, ConfigProvider } from "antd";
 import { useNavigate } from "react-router-dom";
 import { getUserInfor } from "../../utils/LocalStorageManagement";
-import { useTimerContext } from "../TimerContext";
+import { useQuizContext } from "../QuizContext";
 
 export default function TestAlreadyStartNotification() {
   const nav = useNavigate();
-  const { userTimer } = useTimerContext();
+  const { quizDetail } = useQuizContext();
 
   const movingHandle = () => {
     const { userInfo, testQuestions } = getUserInfor();
-    console.log(userTimer);
-    nav("/quiz", { state: { testQuestions, userInfo, now: userTimer } });
+    console.log(quizDetail.now);
+    nav("/quiz", { state: { testQuestions, userInfo, now: quizDetail.now } });
   };
 
   return (

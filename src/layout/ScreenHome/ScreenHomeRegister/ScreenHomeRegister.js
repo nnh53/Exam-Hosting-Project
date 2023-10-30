@@ -6,8 +6,8 @@ import { getQuiz } from "../../../utils/QuizService";
 import { addUserInforToLs } from "../../../utils/LocalStorageManagement";
 import { testTime } from "../../../constants/testTime";
 import TestAlreadyStartNotification from "../../../components/TestAlreadyStartNotification/TestAlreadyStartNotification";
-import { useTimerContext } from "../../../components/TimerContext";
 import { useQuizContext } from "../../../components/QuizContext";
+import { useAnswerContext } from "../../../components/AnswerContext";
 
 function checkTestAlreadyStart(time) {
   console.log("time nè ");
@@ -27,10 +27,10 @@ export default function ScreenHomeRegister() {
   const [form] = Form.useForm();
   const nav = useNavigate();
   const { quizDetail, setQuizDetail } = useQuizContext();
-  const { userTimer, setUserTimer } = useTimerContext();
+  const { setUserAnswers } = useAnswerContext();
 
   // Render the component if userTimer exists
-  const notification = checkTestAlreadyStart(userTimer);
+  const notification = checkTestAlreadyStart(quizDetail.now);
 
   // after user submit the form
   const onFinish = async (values) => {
@@ -52,8 +52,9 @@ export default function ScreenHomeRegister() {
 
       const now = new Date();
       now.setMinutes(now.getMinutes() + testTime);
-
-      setUserTimer(now);
+      setQuizDetail({});
+      setUserAnswers([]); // reset userAnswers
+      setQuizDetail({ ...quizDetail, now: now });
       setQuizDetail({ testQuestions: testQuestions, userInfo: userInfo, now: now });
       nav("/quiz", { state: { testQuestions, userInfo, now } }); //CHỖ NÀY TRUYỀN THÊM THỜI GIAN NÈ Q !!!!!!!!!!!!!
     } else {
