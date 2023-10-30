@@ -18,12 +18,9 @@ export default function TestAlreadyStartNotification() {
 
   return (
     <div className="TestAlreadyStartNotification">
-      <SmallForm>
-        <h1>There is a test already started</h1>
-        <p>If you submit another account, the old test will ended</p>
-
-        <Button onClick={movingHandle}> Move back to Test</Button>
-      </SmallForm>
+      <h1>There is a test already started</h1>
+      <p>If you submit another account, the old test will ended</p>
+      <Button onClick={movingHandle}> Move back to Test</Button>
     </div>
   );
 }
