@@ -3,12 +3,17 @@ import SmallForm from "../SmallForm/SmallForm";
 import "./TestAlreadyStartNotification.scss";
 import { Button } from "antd";
 import { useNavigate } from "react-router-dom";
+import { getUserInfor } from "../../utils/LocalStorageManagement";
+import { useTimerContext } from "../TimerContext";
 
 export default function TestAlreadyStartNotification() {
   const nav = useNavigate();
+  const { userTimer } = useTimerContext();
 
   const movingHandle = () => {
-    nav("/quiz");
+    const { userInfo, testQuestions } = getUserInfor();
+    console.log(userTimer);
+    nav("/quiz", { state: { testQuestions, userInfo, now: userTimer } });
   };
 
   return (

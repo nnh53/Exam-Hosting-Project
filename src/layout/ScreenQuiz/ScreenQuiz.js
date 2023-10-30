@@ -7,15 +7,18 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Title from "../../components/Title/Title";
 import BigForm from "../../components/BigForm/BigForm";
 import { AnswerProvider, useAnswerContext } from "../../components/AnswerContext";
+import { useQuizContext } from "../../components/QuizContext";
 
 export default function ScreenQuiz() {
   const location = useLocation();
 
   const { userAnswers } = useAnswerContext();
 
-  let quiz = location.state.data;
+  const { quizDetail } = useQuizContext();
 
-  const name = location.state.userInfo.name;
+  let quiz = quizDetail.testQuestions;
+
+  const name = quizDetail.userInfo.name;
 
   const lzQuiz = Object.values(quiz.lsQuizz);
 

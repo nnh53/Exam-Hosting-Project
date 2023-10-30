@@ -3,10 +3,11 @@ import { useNavigate } from "react-router-dom";
 import "./ScreenHomeRegister.scss";
 import SubmitButton from "../../../components/Buttons/SubmitButton";
 import { getQuiz } from "../../../utils/QuizService";
-import { addUserInforToLs } from "../../../utils/localStorageManagement";
+import { addUserInforToLs } from "../../../utils/LocalStorageManagement";
 import { testTime } from "../../../constants/testTime";
 import TestAlreadyStartNotification from "../../../components/TestAlreadyStartNotification/TestAlreadyStartNotification";
 import { useTimerContext } from "../../../components/TimerContext";
+import { useQuizContext } from "../../../components/QuizContext";
 
 function checkTestAlreadyStart(time) {
   console.log("time nè ");
@@ -25,6 +26,7 @@ function checkTestAlreadyStart(time) {
 export default function ScreenHomeRegister() {
   const [form] = Form.useForm();
   const nav = useNavigate();
+  const { quizDetail, setQuizDetail } = useQuizContext();
   const { userTimer, setUserTimer } = useTimerContext();
 
   // Render the component if userTimer exists
@@ -36,9 +38,9 @@ export default function ScreenHomeRegister() {
     const { "Full Name": fullName, Email, "Test ID": testId } = values;
 
     // get quiz data from server
-    const data = await getQuiz(testId);
+    const testQuestions = await getQuiz(testId);
 
-    if (data != null) {
+    if (testQuestions != null) {
       const userInfo = { name: fullName, email: Email, testId: testId };
       addUserInforToLs(userInfo);
       // message.success("Submit success!");
@@ -47,8 +49,8 @@ export default function ScreenHomeRegister() {
       now.setMinutes(now.getMinutes() + testTime);
 
       setUserTimer(now);
-
-      nav("/quiz", { state: { data, userInfo, now } }); //CHỖ NÀY TRUYỀN THÊM THỜI GIAN NÈ Q !!!!!!!!!!!!!
+      setQuizDetail({ testQuestions: testQuestions, userInfo: userInfo, now: now });
+      nav("/quiz", { state: { testQuestions, userInfo, now } }); //CHỖ NÀY TRUYỀN THÊM THỜI GIAN NÈ Q !!!!!!!!!!!!!
     } else {
       message.error("Test not exist!");
     }

@@ -76,3 +76,10 @@ export const getAnswer = (quizId, userName) => {
   let result = data.choice.find((item) => item.questionId === quizId);
   return result ? result.ansIdList : null;
 };
+
+export const getUserInfor = () => {
+  let list = getList();
+  const userDetail = list[list.length - 1];
+  const { name, email, testId } = userDetail;
+  return { userInfo: { name, email, testId }, testQuestions: userDetail.choice };
+};
