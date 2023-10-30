@@ -1,6 +1,5 @@
 import React from "react";
 import { Statistic } from "antd";
-import { testTime } from "../../constants/testTime";
 import { useLocation } from "react-router-dom";
 const { Countdown } = Statistic;
 
@@ -9,9 +8,7 @@ export default function CountDownTimer() {
 
   const location = useLocation();
 
-  const startTime = location.state.now;
-  console.log(startTime);
-  const testTimeFromNow = startTime;
+  const testTimeFromNow = location.state.now;
 
   return (
     <div style={{ position: "fixed", top: "20px", right: "20px" }}>

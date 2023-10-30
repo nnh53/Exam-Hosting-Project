@@ -10,10 +10,15 @@ import { AnswerProvider, useAnswerContext } from "../../components/AnswerContext
 
 export default function ScreenQuiz() {
   const location = useLocation();
+
   const { userAnswers } = useAnswerContext();
+
   let quiz = location.state.data;
+
   const name = location.state.userInfo.name;
+
   const lzQuiz = Object.values(quiz.lsQuizz);
+
   const baseURL = "https://server.nglearns.com/answer/";
 
   // Tạo state để lưu trữ câu hỏi và câu trả lời đã chọn
