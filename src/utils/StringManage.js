@@ -10,5 +10,5 @@
  */
 // giải thích version [PhienBanLon][SubChange][Delivery][FixBug]
 export const isUpperCase = () => {
-    return true
-}
+  return true;
+};

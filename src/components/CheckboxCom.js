@@ -7,27 +7,28 @@ export default function CheckboxCom({ question, name }) {
   const { userAnswers, setUserAnswers } = useAnswerContext();
   const { id, answer, isMutiple } = question;
   const [selectedValues, setSelectedValues] = useState([]);
-  const onChange = async (e) => {
+  const onChange = (e) => {
     const selectedValue = e.target.value;
     const checked = e.target.checked;
+    let updatedSelectedValues;
     if (checked) {
       // Nếu đã chọn, thêm giá trị vào mảng selectedValues
-      setSelectedValues([...selectedValues, selectedValue]);
-      // console.log("selectedValues1:", selectedValues);
+      updatedSelectedValues = [...selectedValues, selectedValue];
     } else {
       // Nếu bỏ chọn, loại bỏ giá trị khỏi mảng selectedValues
-      let index = selectedValues.findIndex((value) => value !== selectedValue);
-      selectedValues.splice(index, 1);
+      console.log("vô rồi nè");
+      updatedSelectedValues = selectedValues.filter((item) => item !== selectedValue);
     }
-    addItemToLS(id, e.target.value, isMutiple, name);
+    setSelectedValues(updatedSelectedValues);
+    addItemToLS(id, selectedValue, isMutiple, name);
     if (userAnswers) {
       let index = userAnswers.findIndex((item) => item.id === id);
       if (index !== -1) {
         userAnswers.splice(index, 1);
       }
     }
-    console.log("selectedValues:", selectedValues);
-    setUserAnswers([...userAnswers, { id: id, answer: selectedValues }]);
+    setUserAnswers([...userAnswers, { id: id, answer: updatedSelectedValues }]);
+    console.log(selectedValues);
   };
   useEffect(() => {
     let ansList = getAnswer(id, name);
