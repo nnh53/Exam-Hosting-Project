@@ -1,13 +1,13 @@
 import { Form, Input, message } from "antd";
 import { useNavigate } from "react-router-dom";
-import "./ScreenHomeRegister.scss";
 import SubmitButton from "../../../components/Buttons/SubmitButton";
+import { useQuizContext } from "../../../components/QuizContext";
+import { useAnswerContext } from "../../../components/AnswerContext";
+import TestAlreadyStartNotification from "../../../components/TestAlreadyStartNotification/TestAlreadyStartNotification";
 import { getQuiz } from "../../../utils/QuizService";
 import { addUserInforToLs } from "../../../utils/LocalStorageManagement";
 import { testTime } from "../../../constants/testTime";
-import TestAlreadyStartNotification from "../../../components/TestAlreadyStartNotification/TestAlreadyStartNotification";
-import { useQuizContext } from "../../../components/QuizContext";
-import { useAnswerContext } from "../../../components/AnswerContext";
+import "./ScreenHomeRegister.scss";
 
 function checkTestAlreadyStart(time) {
   console.log("time nè ");

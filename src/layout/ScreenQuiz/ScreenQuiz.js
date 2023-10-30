@@ -1,12 +1,12 @@
 import React from "react";
 import Question from "../../components/Question/Question";
-import "./ScreenQuiz.scss";
 import CountDownTimer from "../../components/CountDownTimer/CountDownTimer";
 import CustomButton from "../../components/CustomButton";
 import Title from "../../components/Title/Title";
 import BigForm from "../../components/BigForm/BigForm";
 import { useAnswerContext } from "../../components/AnswerContext";
 import { useQuizContext } from "../../components/QuizContext";
+import "./ScreenQuiz.scss";
 
 export default function ScreenQuiz() {
   const { userAnswers } = useAnswerContext();
