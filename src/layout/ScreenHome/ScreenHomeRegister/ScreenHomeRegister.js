@@ -49,14 +49,25 @@ export default function ScreenHomeRegister() {
       const userInfo = { name: fullName, email: Email, testId: testId };
       addUserInforToLs(userInfo);
       // message.success("Submit success!");
-
+      if (userInfo !== quizDetail.userInfo) {
+        const now = new Date();
+        now.setMinutes(now.getMinutes() + testTime);
+        setQuizDetail({});
+        setUserAnswers([]); // reset userAnswers
+        setQuizDetail({ ...quizDetail, now: now });
+        setQuizDetail({ testQuestions: testQuestions, userInfo: userInfo, now: now });
+        nav("/quiz", { state: { testQuestions, userInfo, now } });
+      } else {
+        nav("/quiz", {
+          state: { testQuestions: quizDetail.testQuestions, userInfo: quizDetail.userInfo, now: quizDetail.now },
+        });
+      }
       const now = new Date();
       now.setMinutes(now.getMinutes() + testTime);
       setQuizDetail({});
       setUserAnswers([]); // reset userAnswers
       setQuizDetail({ ...quizDetail, now: now });
-      setQuizDetail({ testQuestions: testQuestions, userInfo: userInfo, now: now });
-      nav("/quiz", { state: { testQuestions, userInfo, now } }); //CHỖ NÀY TRUYỀN THÊM THỜI GIAN NÈ Q !!!!!!!!!!!!!
+      setQuizDetail({ testQuestions: testQuestions, userInfo: userInfo, now: now }); //CHỖ NÀY TRUYỀN THÊM THỜI GIAN NÈ Q !!!!!!!!!!!!!
     } else {
       message.error("Test not exist!");
     }
