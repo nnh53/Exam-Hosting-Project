@@ -1,4 +1,9 @@
 .ScreenHomeRegister {
   padding: 50px 50px;
   padding-bottom: 10px;
+  .ant-form-item-label {
+    > label {
+      font-size: 20px;
+    }
+  }
 }

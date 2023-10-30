@@ -1,17 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import Question from "../../components/Question/Question";
 import "./ScreenQuiz.scss";
 import CountDownTimer from "../../components/CountDownTimer/CountDownTimer";
 import CustomButton from "../../components/CustomButton";
-import { useLocation, useNavigate } from "react-router-dom";
 import Title from "../../components/Title/Title";
 import BigForm from "../../components/BigForm/BigForm";
-import { AnswerProvider, useAnswerContext } from "../../components/AnswerContext";
+import { useAnswerContext } from "../../components/AnswerContext";
 import { useQuizContext } from "../../components/QuizContext";
 
 export default function ScreenQuiz() {
-  const location = useLocation();
-
   const { userAnswers } = useAnswerContext();
 
   const { quizDetail } = useQuizContext();
@@ -22,7 +19,7 @@ export default function ScreenQuiz() {
 
   const lzQuiz = Object.values(quiz.lsQuizz);
 
-  const baseURL = "https://server.nglearns.com/answer/";
+  // const baseURL = "https://server.nglearns.com/answer/";
 
   // Tạo state để lưu trữ câu hỏi và câu trả lời đã chọn
 
