@@ -19,7 +19,7 @@ export default function RadioType({ question, name }) {
         userAnswers.splice(index, 1);
       }
     }
-    setUserAnswers([...userAnswers, { id: id, answer: e.target.value }]);
+    setUserAnswers([...userAnswers, { quesId: id, answerId: e.target.value }]);
   };
 
   useEffect(() => {

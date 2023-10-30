@@ -19,25 +19,33 @@ export default function ScreenQuiz() {
 
   const lzQuiz = Object.values(quiz.lsQuizz);
 
-  // const baseURL = "https://server.nglearns.com/answer/";
+  const baseURL = "https://server.nglearns.com/answer/";
 
   // Tạo state để lưu trữ câu hỏi và câu trả lời đã chọn
 
   const handleSubmit = () => {
     console.log("UserAnswer:", userAnswers);
+    console.log("QuizID:", quiz.id);
     // ---------------------------lấy data được rồi, giờ post thôi
-    // fetch(`${baseURL}/${quiz.id}`, {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(answersToSubmit),
-    // }).then((response) => {
-    //   console.log(response.json());
-    // });
-    //   .then((data) => {
-    //     nav("/quiz/1/answer", { state: { data } });
-    //   });
+    fetch(`${baseURL}${quiz.id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userAnswers),
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          alert("Submit successfully");
+          return response.json();
+        }
+      })
+      .then((data) => {
+        alert(`Your score: ${data}`);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (

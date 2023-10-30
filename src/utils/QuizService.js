@@ -1,7 +1,7 @@
 import { getStartTime, saveStartTime } from "./LocalStorageManagement";
 
 // gọi API
-const API_URL = "http://localhost:8000/api/quiz/";
+const API_URL = "https://server.nglearns.com/quizz/";
 
 export const getQuiz = async (quizId) => {
   const response = await fetch(`${API_URL}${quizId}`);

@@ -38,7 +38,12 @@ export default function ScreenHomeRegister() {
     const { "Full Name": fullName, Email, "Test ID": testId } = values;
 
     // get quiz data from server
-    const testQuestions = await getQuiz(testId);
+    let testQuestions;
+    try {
+      testQuestions = await getQuiz(testId);
+    } catch (error) {
+      alert("Get quiz fail");
+    }
 
     if (testQuestions != null) {
       const userInfo = { name: fullName, email: Email, testId: testId };

@@ -27,7 +27,7 @@ export default function CheckboxCom({ question, name }) {
         userAnswers.splice(index, 1);
       }
     }
-    setUserAnswers([...userAnswers, { id: id, answer: updatedSelectedValues }]);
+    setUserAnswers([...userAnswers, { quesId: id, answerId: updatedSelectedValues }]);
     console.log(selectedValues);
   };
   useEffect(() => {
