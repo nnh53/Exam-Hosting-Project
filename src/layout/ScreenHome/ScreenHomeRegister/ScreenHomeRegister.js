@@ -15,7 +15,7 @@ function checkTestAlreadyStart(time) {
   if (time != null) {
     // if time have started => notification
     return (
-      <div style={{ backgroundColor: "red" }}>
+      <div>
         <TestAlreadyStartNotification />
       </div>
     );
