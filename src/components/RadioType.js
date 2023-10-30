@@ -13,6 +13,12 @@ export default function RadioType({ question, name }) {
   const onChange = (e) => {
     setValue(e.target.value);
     addItemToLS(id, e.target.value, isMultiple, name);
+    if (userAnswers) {
+      let index = userAnswers.findIndex((item) => item.id === id);
+      if (index !== -1) {
+        userAnswers.splice(index, 1);
+      }
+    }
     setUserAnswers([...userAnswers, { id: id, answer: e.target.value }]);
   };
 
