@@ -4,4 +4,20 @@
   border-radius: 20px;
   margin: 0 auto;
   padding: 20px;
+
+  h1 {
+    text-align: center;
+    color: black;
+  }
+  p {
+    text-align: center;
+    font-size: xx-large;
+    margin-bottom: 15px;
+  }
+
+  .centerButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
