@@ -1,21 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { Checkbox } from "antd";
 import { addItemToLS, getAnswer } from "../utils/LocalStorageManagement";
+import { useAnswerContext } from "./AnswerContext";
 
 export default function CheckboxCom({ question, name }) {
+  const { userAnswers, setUserAnswers } = useAnswerContext();
   const { id, answer, isMutiple } = question;
   const [selectedValues, setSelectedValues] = useState([]);
-  const onChange = (e) => {
+  const onChange = async (e) => {
     const selectedValue = e.target.value;
     const checked = e.target.checked;
     if (checked) {
       // Nếu đã chọn, thêm giá trị vào mảng selectedValues
       setSelectedValues([...selectedValues, selectedValue]);
+      // console.log("selectedValues1:", selectedValues);
     } else {
       // Nếu bỏ chọn, loại bỏ giá trị khỏi mảng selectedValues
-      setSelectedValues(selectedValues.filter((value) => value !== selectedValue));
+      let index = selectedValues.findIndex((value) => value !== selectedValue);
+      selectedValues.splice(index, 1);
     }
     addItemToLS(id, e.target.value, isMutiple, name);
+    if (userAnswers) {
+      let index = userAnswers.findIndex((item) => item.id === id);
+      if (index !== -1) {
+        userAnswers.splice(index, 1);
+      }
+    }
+    console.log("selectedValues:", selectedValues);
+    setUserAnswers([...userAnswers, { id: id, answer: selectedValues }]);
   };
   useEffect(() => {
     let ansList = getAnswer(id, name);

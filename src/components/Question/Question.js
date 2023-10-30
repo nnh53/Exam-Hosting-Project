@@ -3,24 +3,17 @@ import "./Question.scss";
 import RadioType from "../RadioType";
 import CheckboxCom from "../CheckboxCom";
 
-export default function Question({ question, index, name }) {
-  if (question.isMutiple) {
-    return (
-      <div className="Question">
-        <h3>
-          {index}. {question.content}
-        </h3>
-        <CheckboxCom name={name} question={question} />
-      </div>
-    );
-  } else {
-    return (
-      <div className="Question">
-        <h3>
-          {index}. {question.content}
-        </h3>
-        <RadioType name={name} question={question} />
-      </div>
-    );
-  }
+export default function Question({ question, index, name, updateUserAnswers }) {
+  return (
+    <div className="Question">
+      <h3>
+        {index}. {question.content}
+      </h3>
+      {question.isMutiple ? (
+        <CheckboxCom name={name} question={question} updateUserAnswers={updateUserAnswers} />
+      ) : (
+        <RadioType name={name} question={question} updateUserAnswers={updateUserAnswers} />
+      )}
+    </div>
+  );
 }

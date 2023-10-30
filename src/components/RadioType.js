@@ -1,8 +1,11 @@
 import { Radio, Space } from "antd";
 import React, { useEffect, useState } from "react";
 import { addItemToLS, getAnswer } from "../utils/LocalStorageManagement";
+import { useAnswerContext } from "./AnswerContext";
 
 export default function RadioType({ question, name }) {
+  const { userAnswers, setUserAnswers } = useAnswerContext();
+
   const { id, answer, isMultiple } = question;
   //   console.log(quizId, answer)
   const [value, setValue] = useState(0);
@@ -10,6 +13,7 @@ export default function RadioType({ question, name }) {
   const onChange = (e) => {
     setValue(e.target.value);
     addItemToLS(id, e.target.value, isMultiple, name);
+    setUserAnswers([...userAnswers, { id: id, answer: e.target.value }]);
   };
 
   useEffect(() => {
