@@ -2,7 +2,7 @@ import { Form, Input, message } from "antd";
 import { useNavigate } from "react-router-dom";
 import "./ScreenHomeRegister.scss";
 import SubmitButton from "../../../components/Buttons/SubmitButton";
-import { getQuiz } from "../../../utils/quizService";
+import { getQuiz } from "../../../utils/QuizService";
 import { addUserInforToLs } from "../../../utils/LocalStorageManagement";
 import { testTime } from "../../../constants/testTime";
 import TestAlreadyStartNotification from "../../../components/TestAlreadyStartNotification/TestAlreadyStartNotification";
