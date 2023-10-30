@@ -1,6 +1,6 @@
 import { Radio, Space } from "antd";
 import React, { useEffect, useState } from "react";
-import { addItemToLS, getAnswer } from "../utils/LocalStorageManagement";
+import { addItemToLS, getAnswer } from "../utils/localStorageManagement";
 import { useAnswerContext } from "./AnswerContext";
 
 export default function RadioType({ question, name }) {
