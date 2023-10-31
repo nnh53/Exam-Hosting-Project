@@ -7,6 +7,7 @@ import TestAlreadyStartNotification from "../../../components/TestAlreadyStartNo
 import { getQuiz } from "../../../utils/QuizService";
 import { addUserInforToLs } from "../../../utils/LocalStorageManagement";
 import { testTime } from "../../../constants/testTime";
+import { useDispatch, useSelector } from "react-redux";
 import "./ScreenHomeRegister.scss";
 
 function checkTestAlreadyStart(time) {
@@ -28,52 +29,52 @@ const _ = require("lodash");
 export default function ScreenHomeRegister() {
   const [form] = Form.useForm();
   const nav = useNavigate();
-  const { quizDetail, setQuizDetail } = useQuizContext();
+
+  const dispatch = useDispatch();
+
+  const userInfoFromRedux = useSelector((state) => state.userInfo);
+  const testQuestionsFromRedux = useSelector((state) => state.testQuestions);
+
   const { setUserAnswers } = useAnswerContext();
 
   // Render the component if userTimer exists
-  const notification = checkTestAlreadyStart(quizDetail.now);
+  const notification = checkTestAlreadyStart(userInfoFromRedux?.now);
 
-  // after user submit the form
+  // After user submit the form
   const onFinish = async (values) => {
     // access user input data
     const { "Full Name": fullName, Email, "Test ID": testId } = values;
+    const userInfo = { name: fullName, email: Email, testId: testId };
 
     // get quiz data from server
-    let testQuestions;
-    try {
-      testQuestions = await getQuiz(testId);
-    } catch (error) {
-      alert("Get quiz fail");
-    }
+    let testQuestions = await getQuiz(testId);
 
     if (testQuestions != null) {
-      const userInfo = { name: fullName, email: Email, testId: testId };
+      // chỉ để nhìn thấy tạm
       addUserInforToLs(userInfo);
-      console.log("userinfo: ", userInfo);
-      console.log("quizinfor: ", quizDetail.userInfo);
-      console.log(_.isEqual(userInfo, quizDetail.userInfo));
-      // message.success("Submit success!");
-      if (!_.isEqual(userInfo, quizDetail.userInfo)) {
-        const now = new Date();
-        now.setMinutes(now.getMinutes() + testTime);
-        setQuizDetail({});
-        setUserAnswers([]); // reset userAnswers
-        setQuizDetail({ ...quizDetail, now: now });
-        setQuizDetail({ testQuestions: testQuestions, userInfo: userInfo, now: now });
-        nav("/quiz", { state: { testQuestions, userInfo, now } });
-      } else {
-        console.log("ahihi2");
-        nav("/quiz", {
-          state: { testQuestions: quizDetail.testQuestions, userInfo: quizDetail.userInfo, now: quizDetail.now },
-        });
-      }
+
       const now = new Date();
       now.setMinutes(now.getMinutes() + testTime);
-      setQuizDetail({});
+      // thêm thời gian vào userInfo
+      userInfo.now = now;
+
+      // set lên redux store
+      dispatch({ type: "SET_USER_INFO", payload: { testQuestions, userInfo } });
+
+      // nếu user input khác trên redux store --> set lại user mới
+      if (!_.isEqual(userInfo, userInfoFromRedux)) {
+        const nowNew = new Date();
+        nowNew.setMinutes(now.getMinutes() + testTime);
+        setUserAnswers([]); // reset userAnswers
+        nav("/quiz", { state: { testQuestions, userInfo, nowNew } });
+      } else {
+        // nếu là người dùng cũ nhưng mà đăng nhập
+        nav("/quiz", {
+          state: { testQuestions: testQuestionsFromRedux, userInfo: userInfoFromRedux, now: userInfoFromRedux.now },
+        });
+      }
+
       setUserAnswers([]); // reset userAnswers
-      setQuizDetail({ ...quizDetail, now: now });
-      setQuizDetail({ testQuestions: testQuestions, userInfo: userInfo, now: now }); //CHỖ NÀY TRUYỀN THÊM THỜI GIAN NÈ Q !!!!!!!!!!!!!
     } else {
       message.error("Test not exist!");
     }

@@ -4,14 +4,17 @@ import ScreenQuiz from "./layout/ScreenQuiz/ScreenQuiz";
 import ScreenAnswer from "./layout/ScreenAnswer/ScreenAnswer";
 import { AnswerProvider } from "./components/AnswerContext";
 import { QuizProvider } from "./components/QuizContext";
-import "./App.css";
 import ErrorPage from "./components/ErrorPage/ErrorPage";
+import { Provider } from "react-redux";
+
+import "./App.css";
+import store from "./components/ReduxStore";
 
 function App() {
   return (
-    <QuizProvider>
-      <AnswerProvider>
-        <div className="">
+    <Provider store={store}>
+      <QuizProvider>
+        <AnswerProvider>
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<ScreenHome />} />
@@ -20,9 +23,9 @@ function App() {
               <Route path="*" element={<ErrorPage />} />
             </Routes>
           </BrowserRouter>
-        </div>
-      </AnswerProvider>
-    </QuizProvider>
+        </AnswerProvider>
+      </QuizProvider>
+    </Provider>
   );
 }
 
