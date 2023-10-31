@@ -7,7 +7,6 @@ import BigForm from "../../components/BigForm/BigForm";
 import { useAnswerContext } from "../../components/AnswerContext";
 import "./ScreenQuiz.scss";
 import { useSelector } from "react-redux";
-import { time } from "console";
 
 export default function ScreenQuiz() {
   const { userAnswers } = useAnswerContext();
@@ -16,7 +15,6 @@ export default function ScreenQuiz() {
 
   const name = useSelector((state) => state.userInfo.name);
   const nowFromRedux = useSelector((state) => state.userInfo.now);
-  time = JSON.parse(nowFromRedux);
   const lzQuiz = Object.values(quiz.lsQuizz);
 
   const baseURL = "https://server.nglearns.com/answer/";
@@ -24,8 +22,8 @@ export default function ScreenQuiz() {
   // Tạo state để lưu trữ câu hỏi và câu trả lời đã chọn
 
   const handleSubmit = () => {
-    console.log("UserAnswer:", userAnswers);
-    console.log("QuizID:", quiz.id);
+    // console.log("UserAnswer:", userAnswers);
+    // console.log("QuizID:", quiz.id);
     // ---------------------------lấy data được rồi, giờ post thôi
     fetch(`${baseURL}${quiz.id}`, {
       method: "POST",
@@ -48,7 +46,7 @@ export default function ScreenQuiz() {
         }
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
   };
 
@@ -57,7 +55,7 @@ export default function ScreenQuiz() {
       <header className="header">
         <Title />
         <p>You have 20 minutes to finish this test</p>
-        <CountDownTimer time={time} />
+        <CountDownTimer time={nowFromRedux} />
       </header>
 
       <BigForm>
