@@ -2,13 +2,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
+  flex-direction: column;
+  height: 1080px;
   .image-container {
-    margin-top: 10rem;
     width: 1000px;
     height: auto;
     img {
       width: 100%;
       height: auto;
+      margin-bottom: 3rem;
     }
   }
 }
