@@ -1,0 +1,14 @@
+.ErrorPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .image-container {
+    margin-top: 10rem;
+    width: 1000px;
+    height: auto;
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
