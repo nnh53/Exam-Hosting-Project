@@ -23,6 +23,8 @@ function checkTestAlreadyStart(time) {
   return null; // Return null if time is null or undefined
 }
 
+const _ = require("lodash");
+
 export default function ScreenHomeRegister() {
   const [form] = Form.useForm();
   const nav = useNavigate();
@@ -48,8 +50,11 @@ export default function ScreenHomeRegister() {
     if (testQuestions != null) {
       const userInfo = { name: fullName, email: Email, testId: testId };
       addUserInforToLs(userInfo);
+      console.log("userinfo: ", userInfo);
+      console.log("quizinfor: ", quizDetail.userInfo);
+      console.log(_.isEqual(userInfo, quizDetail.userInfo));
       // message.success("Submit success!");
-      if (userInfo !== quizDetail.userInfo) {
+      if (!_.isEqual(userInfo, quizDetail.userInfo)) {
         const now = new Date();
         now.setMinutes(now.getMinutes() + testTime);
         setQuizDetail({});
@@ -58,6 +63,7 @@ export default function ScreenHomeRegister() {
         setQuizDetail({ testQuestions: testQuestions, userInfo: userInfo, now: now });
         nav("/quiz", { state: { testQuestions, userInfo, now } });
       } else {
+        console.log("ahihi2");
         nav("/quiz", {
           state: { testQuestions: quizDetail.testQuestions, userInfo: quizDetail.userInfo, now: quizDetail.now },
         });
