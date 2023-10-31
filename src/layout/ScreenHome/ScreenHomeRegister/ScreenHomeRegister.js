@@ -12,14 +12,15 @@ import "./ScreenHomeRegister.scss";
 function checkTestAlreadyStart(time) {
   console.log("time nè ");
   console.log(time);
-  // if time have started => notification
-  return (
-    !time && (
+  if (time != null) {
+    // if time have started => notification
+    return (
       <div>
         <TestAlreadyStartNotification />
       </div>
-    )
-  );
+    );
+  }
+  return null; // Return null if time is null or undefined
 }
 
 const _ = require("lodash");

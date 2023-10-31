@@ -35,7 +35,6 @@ export default function CheckboxCom({ question, name }) {
     if (ansList) {
       setSelectedValues([...ansList]);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

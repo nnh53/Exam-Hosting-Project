@@ -9,7 +9,7 @@ export default function Question({ question, index, name, updateUserAnswers }) {
       <h3>
         {index}. {question.content}
       </h3>
-      {question.isMultiple ? (
+      {question.isMutiple ? (
         <CheckboxCom name={name} question={question} updateUserAnswers={updateUserAnswers} />
       ) : (
         <RadioType name={name} question={question} updateUserAnswers={updateUserAnswers} />
