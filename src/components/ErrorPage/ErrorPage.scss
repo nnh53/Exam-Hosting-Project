@@ -1,11 +1,18 @@
 .ErrorPage {
+  height: 100%;
+  width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   .image-container {
-    margin-top: 10rem;
-    width: 1000px;
+    // margin-top:
+    width: 50%;
     height: auto;
+    margin: auto;
+    // position: relative;
+    // top: 50%;
+    // transform: translateY(-50%); 
     img {
       width: 100%;
       height: auto;
