@@ -19,3 +19,27 @@ export const getQuiz = async (quizId) => {
     return null;
   }
 };
+
+export async function pushInfoToServer(user_info) {
+  console.log("pushtintoServer");
+  console.log("user_info", user_info);
+  return fetch("http://localhost:9050/user/register", {
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    },
+    method: "POST",
+    body: user_info,
+  });
+}
+
+export async function checkUserinfoFromServer(user_info) {
+  return fetch("http://localhost:9000/user/register", {
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    },
+    method: "POST",
+    body: user_info,
+  });
+}

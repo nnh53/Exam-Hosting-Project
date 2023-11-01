@@ -9,6 +9,7 @@ import "./ScreenQuiz.scss";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { clearLs } from "../../utils/LocalStorageManagement";
+import { checkUserinfoFromServer } from "../../utils/QuizService";
 
 export default function ScreenQuiz() {
   const { userAnswers } = useAnswerContext();
@@ -22,11 +23,20 @@ export default function ScreenQuiz() {
   const nav = useNavigate();
 
   const baseURL = "https://server.nglearns.com/answer/";
+  const userInfoFromRedux = useSelector((state) => state.userInfo);
 
   // Tạo state để lưu trữ câu hỏi và câu trả lời đã chọn
 
   const handleSubmit = () => {
+    // kiểm tra xem userInfo gửi có giống trên server hay ko
+    // nếu giống thì mới cho submit
+
+    console.log("userInfoFromRedux", userInfoFromRedux);
+    const respone = checkUserinfoFromServer({ user_info: userInfoFromRedux });
+    console.log(respone);
+
     setIsSubmit(true);
+
     clearLs();
     // console.log("UserAnswer:", userAnswers);
     // console.log("QuizID:", quiz.id);
