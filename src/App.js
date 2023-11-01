@@ -19,7 +19,7 @@ function App() {
             <Routes>
               <Route path="/" element={<ScreenHome />} />
               <Route path="/quiz" element={<ScreenQuiz />} />
-              <Route path="/quiz/:quizId/answer" element={<ScreenAnswer />} />
+              <Route path="/quiz/answer" element={<ScreenAnswer />} />
               <Route path="*" element={<ErrorPage />} />
             </Routes>
           </BrowserRouter>

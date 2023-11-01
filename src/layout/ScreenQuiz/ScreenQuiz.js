@@ -7,6 +7,7 @@ import BigForm from "../../components/BigForm/BigForm";
 import { useAnswerContext } from "../../components/AnswerContext";
 import "./ScreenQuiz.scss";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 
 export default function ScreenQuiz() {
   const { userAnswers } = useAnswerContext();
@@ -17,6 +18,7 @@ export default function ScreenQuiz() {
   const nowFromRedux = useSelector((state) => state.userInfo.now);
   const lzQuiz = Object.values(quiz.lsQuizz);
   const [isSubmit, setIsSubmit] = useState(false);
+  const nav = useNavigate();
 
   const baseURL = "https://server.nglearns.com/answer/";
 
@@ -42,9 +44,10 @@ export default function ScreenQuiz() {
       })
       .then((data) => {
         if (data !== undefined) {
-          alert(`Your score: ${data}`);
+          // alert(`Your score: ${data}`);
+          nav("/quiz/answer", { state: { score: data } });
         } else {
-          alert(`Your score: 0`);
+          nav("/quiz/answer", { state: { score: 0 } });
         }
       })
       .catch((error) => {
