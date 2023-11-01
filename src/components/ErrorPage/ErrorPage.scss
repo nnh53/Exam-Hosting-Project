@@ -5,6 +5,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
+  flex-direction: column;
+  height: 1080px;
   .image-container {
     // margin-top:
     width: 50%;
@@ -12,10 +15,11 @@
     margin: auto;
     // position: relative;
     // top: 50%;
-    // transform: translateY(-50%); 
+    // transform: translateY(-50%);
     img {
       width: 100%;
       height: auto;
+      margin-bottom: 3rem;
     }
   }
 }
