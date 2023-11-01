@@ -1,11 +1,8 @@
-// gọi API
-// const API_URL = "https://server.nglearns.com/quizz/";
-const API_URL = "http://localhost:8000/api/quiz/";
-
+// gọi API lấy đề thi
 export const getQuiz = async (quizId) => {
   try {
-    const response = await fetch(`${API_URL}${quizId}`);
-
+    console.log(process.env.REACT_APP_API_QUESTION_URL.replace(/"/g, "").concat(quizId));
+    const response = await fetch(process.env.REACT_APP_API_QUESTION_URL.replace(/"/g, "").concat(quizId));
     // check if the response is ok (disconnect from network, server is down, etc. )
     if (response.status === 200) {
       const data = await response.json();

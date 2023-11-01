@@ -28,6 +28,7 @@ export default function RadioType({ question, name }) {
       let aId = getAnswer(id, name)[0];
       setValue(aId);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -1,6 +1,5 @@
 import React from "react";
 import { Statistic } from "antd";
-import { useLocation } from "react-router-dom";
 const { Countdown } = Statistic;
 
 export default function CountDownTimer({ time, onFinish }) {

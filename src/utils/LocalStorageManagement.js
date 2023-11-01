@@ -36,12 +36,12 @@ export const addUserInforToLs = (userInfo) => {
 };
 
 // hàm lưu đáp án người dùng chọn vào localStorage
-export const addItemToLS = (quizId, ansId, isMutiple, name) => {
+export const addItemToLS = (quizId, ansId, isMultiple, name) => {
   // lấy list từ ls về
   let list = getList();
   let data = list.find((item) => item.name === name);
   console.log(data);
-  if (isMutiple) {
+  if (isMultiple) {
     // tìm xem có quizId nào trong list chưa
     let question = data.choice.find((item) => item.questionId === quizId);
     if (question) {

@@ -57,6 +57,7 @@ export default function ScreenQuiz() {
     if (!isSubmit) {
       handleSubmit();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSubmit]);
 
   return (

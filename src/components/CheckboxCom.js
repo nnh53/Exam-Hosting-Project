@@ -5,7 +5,7 @@ import { useAnswerContext } from "./AnswerContext";
 
 export default function CheckboxCom({ question, name }) {
   const { userAnswers, setUserAnswers } = useAnswerContext();
-  const { id, answer, isMutiple } = question;
+  const { id, answer, isMultiple } = question;
   const [selectedValues, setSelectedValues] = useState([]);
   const onChange = (e) => {
     const selectedValue = e.target.value;
@@ -20,7 +20,7 @@ export default function CheckboxCom({ question, name }) {
       updatedSelectedValues = selectedValues.filter((item) => item !== selectedValue);
     }
     setSelectedValues(updatedSelectedValues);
-    addItemToLS(id, selectedValue, isMutiple, name);
+    addItemToLS(id, selectedValue, isMultiple, name);
     if (userAnswers) {
       let index = userAnswers.findIndex((item) => item.id === id);
       if (index !== -1) {
@@ -35,6 +35,7 @@ export default function CheckboxCom({ question, name }) {
     if (ansList) {
       setSelectedValues([...ansList]);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
