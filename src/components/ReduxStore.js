@@ -1,5 +1,25 @@
 import { createStore } from "redux";
 
+export function saveToLocalStorage(state) {
+  try {
+    const serializedState = JSON.stringify(state);
+    localStorage.setItem("state", serializedState);
+  } catch (e) {
+    console.warn(e);
+  }
+}
+
+function loadFromLocalStorage() {
+  try {
+    const serializedState = localStorage.getItem("state");
+    if (serializedState === null) return undefined;
+    return JSON.parse(serializedState);
+  } catch (e) {
+    console.warn(e);
+    return undefined;
+  }
+}
+
 const initialState = {
   quizDetail: {},
 };
@@ -16,6 +36,13 @@ function userInfoReducer(state = initialState, action) {
   }
 }
 
-const store = createStore(userInfoReducer);
+const persistedState = loadFromLocalStorage();
+const store = createStore(userInfoReducer, persistedState);
+
+// Save the state to localStorage every time it changes
+store.subscribe(() => {
+  const state = store.getState();
+  saveToLocalStorage(state);
+});
 
 export default store;

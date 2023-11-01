@@ -1,7 +1,6 @@
 import { Form, Input, message } from "antd";
 import { useNavigate } from "react-router-dom";
 import SubmitButton from "../../../components/Buttons/SubmitButton";
-import { useQuizContext } from "../../../components/QuizContext";
 import { useAnswerContext } from "../../../components/AnswerContext";
 import TestAlreadyStartNotification from "../../../components/TestAlreadyStartNotification/TestAlreadyStartNotification";
 import { getQuiz } from "../../../utils/QuizService";
@@ -9,6 +8,7 @@ import { addUserInforToLs } from "../../../utils/LocalStorageManagement";
 import { testTime } from "../../../constants/testTime";
 import { useDispatch, useSelector } from "react-redux";
 import "./ScreenHomeRegister.scss";
+import store, { saveToLocalStorage } from "../../../components/ReduxStore";
 
 function checkTestAlreadyStart(time) {
   console.log("time nè ");
@@ -33,6 +33,8 @@ export default function ScreenHomeRegister() {
   const dispatch = useDispatch();
 
   const userInfoFromRedux = useSelector((state) => state.userInfo);
+  console.log("userInfoFromRedux", userInfoFromRedux);
+
   const testQuestionsFromRedux = useSelector((state) => state.testQuestions);
 
   const { setUserAnswers } = useAnswerContext();
@@ -60,6 +62,9 @@ export default function ScreenHomeRegister() {
 
       // set lên redux store
       dispatch({ type: "SET_USER_INFO", payload: { testQuestions, userInfo } });
+      store.subscribe(() => {
+        saveToLocalStorage(store.getState());
+      });
 
       // nếu user input khác trên redux store --> set lại user mới
       if (!_.isEqual(userInfo, userInfoFromRedux)) {
@@ -101,7 +106,7 @@ export default function ScreenHomeRegister() {
             },
           ]}
         >
-          <Input placeholder="Input your Full Name" />
+          <Input placeholder="Input your Full Name" size="large" />
         </Form.Item>
 
         <Form.Item
@@ -117,7 +122,7 @@ export default function ScreenHomeRegister() {
             },
           ]}
         >
-          <Input placeholder="Input your Email" />
+          <Input placeholder="Input your Email" size="large" />
         </Form.Item>
 
         <Form.Item
@@ -133,7 +138,7 @@ export default function ScreenHomeRegister() {
             },
           ]}
         >
-          <Input placeholder="Input Test ID" />
+          <Input placeholder="Input Test ID" size="large" />
         </Form.Item>
 
         <Form.Item>
