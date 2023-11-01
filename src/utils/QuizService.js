@@ -1,5 +1,6 @@
 // gọi API
-const API_URL = "https://server.nglearns.com/quizz/";
+// const API_URL = "https://server.nglearns.com/quizz/";
+const API_URL = "http://localhost:8000/api/quiz/";
 
 export const getQuiz = async (quizId) => {
   try {

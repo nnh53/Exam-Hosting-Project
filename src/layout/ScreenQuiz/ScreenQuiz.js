@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import Question from "../../components/Question/Question";
 import CountDownTimer from "../../components/CountDownTimer/CountDownTimer";
 import CustomButton from "../../components/CustomButton";
@@ -16,12 +16,14 @@ export default function ScreenQuiz() {
   const name = useSelector((state) => state.userInfo.name);
   const nowFromRedux = useSelector((state) => state.userInfo.now);
   const lzQuiz = Object.values(quiz.lsQuizz);
+  const [isSubmit, setIsSubmit] = useState(false);
 
   const baseURL = "https://server.nglearns.com/answer/";
 
   // Tạo state để lưu trữ câu hỏi và câu trả lời đã chọn
 
   const handleSubmit = () => {
+    setIsSubmit(true);
     // console.log("UserAnswer:", userAnswers);
     // console.log("QuizID:", quiz.id);
     // ---------------------------lấy data được rồi, giờ post thôi
@@ -46,16 +48,23 @@ export default function ScreenQuiz() {
         }
       })
       .catch((error) => {
-        // console.log(error);
+        alert("Submit failed");
+        console.log("Error: ", error);
       });
   };
+
+  const handleCountdownFinish = useCallback(() => {
+    if (!isSubmit) {
+      handleSubmit();
+    }
+  }, [isSubmit]);
 
   return (
     <div className="ScreenQuiz">
       <header className="header">
         <Title />
         <p>You have 20 minutes to finish this test</p>
-        <CountDownTimer time={nowFromRedux} />
+        <CountDownTimer time={nowFromRedux} onFinish={handleCountdownFinish} />
       </header>
 
       <BigForm>
