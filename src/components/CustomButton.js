@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, ConfigProvider } from "antd";
 
-export default function CustomButton({ text, type, classContent, linkTo, style, onClick }) {
+export default function CustomButton({ text, type, classContent, linkTo, style, onClick, index }) {
   return (
     <ConfigProvider
       theme={{
@@ -13,7 +13,7 @@ export default function CustomButton({ text, type, classContent, linkTo, style, 
         },
       }}
     >
-      <Button className={classContent} type={type} href={linkTo} style={style} onClick={onClick}>
+      <Button key={index} className={classContent} type={type} href={linkTo} style={style} onClick={onClick}>
         {text}
       </Button>
     </ConfigProvider>

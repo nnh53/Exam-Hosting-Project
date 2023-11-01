@@ -28,7 +28,7 @@ export default function ScreenAnswer() {
             status="success"
             title="Submit Successfully"
             subTitle={`Your score: ${score}`}
-            extra={[<CustomButton text="Try Again" linkTo="/" type="primary" style={{ margin: "2rem" }} />]}
+            extra={[<CustomButton key="100" text="Try Again" linkTo="/" type="primary" style={{ margin: "2rem" }} />]}
           />
         </ConfigProvider>
       </div>

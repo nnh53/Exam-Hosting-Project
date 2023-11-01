@@ -8,6 +8,7 @@ import { useAnswerContext } from "../../components/AnswerContext";
 import "./ScreenQuiz.scss";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import { clearLs } from "../../utils/LocalStorageManagement";
 
 export default function ScreenQuiz() {
   const { userAnswers } = useAnswerContext();
@@ -26,6 +27,7 @@ export default function ScreenQuiz() {
 
   const handleSubmit = () => {
     setIsSubmit(true);
+    clearLs();
     // console.log("UserAnswer:", userAnswers);
     // console.log("QuizID:", quiz.id);
     // ---------------------------lấy data được rồi, giờ post thôi

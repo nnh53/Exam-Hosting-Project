@@ -35,6 +35,10 @@ export const addUserInforToLs = (userInfo) => {
   localStorage.setItem("user", JSON.stringify(list));
 };
 
+export const clearLs = () => {
+  localStorage.clear();
+};
+
 // hàm lưu đáp án người dùng chọn vào localStorage
 export const addItemToLS = (quizId, ansId, isMultiple, name) => {
   // lấy list từ ls về
